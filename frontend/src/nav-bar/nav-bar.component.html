@@ -1,0 +1,17 @@
+<section class="navbar">
+    <header class="container">
+        <div class="flex justify-between items-center w-[80%] mx-auto pt-8 pb-5">
+            <div class="flex gap-3 items-center">
+                <p class="font-bold text-5xl text-green-700 hover:text-green-800"><a routerLink="/landing-page">CRAS</a></p>
+                <div class="flex gap-12 font-medium items-center pt-2 pl-28 text-green-700">
+                    <p><a routerLink="/landing-page" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-800">Home</a></p>
+                    <p><a routerLink="/about-page" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-800">About Us</a></p>
+                </div>
+
+            </div>
+            <button><a type="button" class="bg-green-700 rounded-xl py-1.5 text-slate-50 px-3 font-medium hover:bg-green-800" routerLink="/create-account" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">Get Started</a></button>
+        </div>
+        <hr class="h-0.5 bg-[#f7f2f2]"/>
+    </header>
+</section>
+

@@ -6,10 +6,10 @@ import { aboutPageComponent } from '../about-page/about-page.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
  export const routes: Routes = [
-    { path: 'home', component: landingPageComponent },
+    { path: 'landing-page', component: landingPageComponent },
     { path: 'create-account', component: CreateAccountComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'about', component: aboutPageComponent },
+    { path: 'about-page', component: aboutPageComponent },
     // // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, // Protect dashboard with AuthGuard
     
 ];
