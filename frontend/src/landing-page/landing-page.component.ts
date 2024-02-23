@@ -10,5 +10,5 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './landing-page.component.css'
 })
 export class landingPageComponent {
-
+  imagePath: string = 'assets/image.jpg';
 }
