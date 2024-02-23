@@ -1,0 +1,19 @@
+{
+  "name": "credit_risk_assessment_system",
+  "version": "1.0.0",
+  "description": "credit score and risk assessment software to determine if a customer/user\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[calculte\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Ccredit score and reduce the risk on the bank before giving financial assistance",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/policy745/credit_risk_assessment_system.git"
+  },
+  "author": "Idowu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/policy745/credit_risk_assessment_system/issues"
+  },
+  "homepage": "https://github.com/policy745/credit_risk_assessment_system#readme"
+}
