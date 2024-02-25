@@ -23,20 +23,20 @@ public class CheckCreditWorthinessRequest
     public bool Purpose_SmallBusiness { get; set; } = false;
     public bool Purpose_Vacation { get; set; } = false;
     public bool Purpose_Wedding { get; set; } = false;
-    public double CurrentLoanAmount { get; set; }
-    public int Term { get; set; }
-    public int CreditScore { get; set; }
-    public int YearsInCurrentJob { get; set; }
+    public float CurrentLoanAmount { get; set; }
+    public float Term { get; set; }
+    public float CreditScore { get; set; }
+    public float YearsInCurrentJob { get; set; }
     public bool HomeOwnership { get; set; } = false;
-    public double AnnualIncome { get; set; }
-    public double MonthlyDebt { get; set; }
-    public int YearsOfCreditHistory { get; set; }
-    public int MonthsSinceLastDelinquent { get; set; }
-    public int NumberOfOpenAccounts { get; set; }
-    public int NumberOfCreditProblems { get; set; }
-    public double CurrentCreditBalance { get; set; }
-    public double MaximumOpenCredit { get; set; }
-    public int Bankruptcies { get; set; }
-    public int TaxLiens { get; set; }
+    public float AnnualIncome { get; set; }
+    public float MonthlyDebt { get; set; }
+    public float YearsOfCreditHistory { get; set; }
+    public float MonthsSinceLastDelinquent { get; set; }
+    public float NumberOfOpenAccounts { get; set; }
+    public float NumberOfCreditProblems { get; set; }
+    public float CurrentCreditBalance { get; set; }
+    public float MaximumOpenCredit { get; set; }
+    public float Bankruptcies { get; set; }
+    public float TaxLiens { get; set; }
     public float DebitToIncomeRatio { get; set; }
 }

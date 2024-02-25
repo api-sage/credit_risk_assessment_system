@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CreditRiskAssessment.Interfaces;
+using CreditRiskAssessment.Models.Request;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CreditRiskAssessment.API.Controllers
 {
@@ -6,9 +8,30 @@ namespace CreditRiskAssessment.API.Controllers
     [Route("apply/[Action]")]
     public class LoanApplicantController : Controller
     {
-        public IActionResult Index()
+        private ICheckCreditWorthinessService _checkCreditWorthinessService;
+        private Serilog.ILogger _logger;
+
+        public LoanApplicantController(ICheckCreditWorthinessService checkCreditWorthinessService, Serilog.ILogger logger)
         {
-            return View();
+            _checkCreditWorthinessService = checkCreditWorthinessService;
+            _logger = logger;
+
+        }
+
+        //[HttpGet]
+        //public async Task<ActionResult> TrainModel()
+        //{
+        //    var response = await _crasPredictService.TrainModelAsync();
+        //    return Ok(response);
+        //}
+
+        [HttpPost]
+        public async Task<ActionResult> AssessCreditWorthiness(CheckCreditWorthinessRequest request)
+        {
+            _logger.Information(request.ToString());
+            var response = await _checkCreditWorthinessService.CheckCreditWorthiness(request);
+            _logger.Information(response.ToString());
+            return Ok(response);
         }
     }
 }

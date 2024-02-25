@@ -1,3 +1,8 @@
+using CreditRiskAssessment.Interfaces;
+using CreditRiskAssessment.ML.Interfaces;
+using CreditRiskAssessment.ML.Services;
+using CreditRiskAssessment.Services;
+using Serilog;
 
 namespace CreditRiskAssessment.API
 {
@@ -13,6 +18,13 @@ namespace CreditRiskAssessment.API
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<ICRAS_Service, CRASPredictService>();
+            builder.Services.AddScoped<ICheckCreditWorthinessService, CheckCreditWorthinessService>();
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.File(builder.Configuration.GetValue<string>("Serilog:FilePath"));
+            builder.Services.AddSingleton(Log.Logger);
 
             var app = builder.Build();
 
