@@ -3,6 +3,7 @@ using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Models;
 using CreditRiskAssessment.Models.Request;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace CreditRiskAssessment.Services;
@@ -19,7 +20,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     //TAKES LOAN APPLICANT'S REQUEST AND SENDS IT TO THE ASSESSMENT ENGINE FOR ASSESSMENT
     public async Task<ResponseResult<LoanApplicantMLResponse>> CheckCreditWorthiness(CheckCreditWorthinessRequest request)
     {
-        _logger.Information($"Request :: {request}");
+        _logger.Information($"Request :: {JsonConvert.SerializeObject(request)}");
         var response = new ResponseResult<LoanApplicantMLResponse>();
 
         //THIS MAPS REQUEST FROM USER (LOAN APPLICANT) TO REQUEST TYPE THE ML MODEL EXPECTS
@@ -58,10 +59,10 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             TaxLiens = request.TaxLiens,
             DebitToIncomeRatio = request.DebitToIncomeRatio,
         };
-        _logger.Information($"Model Request to Assessment Engine :: {modelRequest}");
+        _logger.Information($"Model Request to Assessment Engine :: {JsonConvert.SerializeObject(modelRequest)}");
         //RESPONSE FROM THE CREDIT ASSESSMENT ENGINE
         var assessCreditWorthiness = _crasService.AssessCreditWorthiness(modelRequest);
-        _logger.Information($"Credit Worthiness Response :: {assessCreditWorthiness}");
+        _logger.Information($"Credit Worthiness Response :: {JsonConvert.SerializeObject(assessCreditWorthiness)}");
         response.status = Constants.SUCCESS;
         response.data = assessCreditWorthiness;
         response.message = Constants.SUCCESS;

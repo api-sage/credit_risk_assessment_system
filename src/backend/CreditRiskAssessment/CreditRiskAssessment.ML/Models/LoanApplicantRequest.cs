@@ -43,7 +43,7 @@ namespace CreditRiskAssessment.ML.Models
         [ColumnName("Label"), LoadColumn(15)]
         public bool LoanStatus { get; set; }
         [LoadColumn(16)]
-        public double CurrentLoanAmount { get; set; }
+        public float CurrentLoanAmount { get; set; }
         [LoadColumn(17)]
         public float Term { get; set; }
         [LoadColumn(18)]
@@ -53,9 +53,9 @@ namespace CreditRiskAssessment.ML.Models
         [LoadColumn(20)]
         public float HomeOwnership { get; set; }
         [LoadColumn(21)]
-        public double AnnualIncome { get; set; }
+        public float AnnualIncome { get; set; }
         [LoadColumn(22)]
-        public double MonthlyDebt { get; set; }
+        public float MonthlyDebt { get; set; }
         [LoadColumn(23)]
         public float YearsOfCreditHistory { get; set; }
         [LoadColumn(24)]

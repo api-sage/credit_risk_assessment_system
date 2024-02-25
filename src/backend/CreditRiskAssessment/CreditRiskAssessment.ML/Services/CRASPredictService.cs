@@ -3,6 +3,7 @@ using CreditRiskAssessment.ML.Models;
 using Microsoft.ML;
 using Microsoft.ML.AutoML;
 using Microsoft.ML.Data;
+using Newtonsoft.Json;
 using Serilog;
 
 namespace CreditRiskAssessment.ML.Services;
@@ -20,6 +21,7 @@ public class CRASPredictService : ICRAS_Service
         _logger = logger;
         _mLContext = new MLContext();
         _creditAssessmentPipeline = _mLContext.Model.Load("CRAS.zip", out _dataViewSchema);
+        _assessmentEngine = _mLContext.Model.CreatePredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse>(_creditAssessmentPipeline);
     }
 
     //ONLY CALL THIS METHOD TO RE-TRAIN THE MODEL SHOULD YOU HAVE NEW SET OF ANALYTICAL DATASET
@@ -41,30 +43,25 @@ public class CRASPredictService : ICRAS_Service
             .SetDataset(trainTestData);
         _mLContext.Log += (_, e) =>
         {
-            Console.WriteLine(e.Message);
-            _logger.Information(e.Message);
             if (e.Source.Equals("AutoMLExperiment"))
             {
-                Console.WriteLine(e.Message);
-                _logger.Information(string.Concat("Focus:: ", e.Message));
+                _logger.Information($"Model Training in Progress:: {e.Message}");
             }
         };
         TrialResult results = await autoMLExperiment.RunAsync();
         ITransformer trainedModel = results.Model;
         _logger.Information(results.Metric.ToString());
-        Console.WriteLine(string.Concat("Accuracy:: ",results.Metric.ToString()));
+        _logger.Information(string.Concat("CRAS Accuracy:: ", results.Metric.ToString()));
         _mLContext.Model.Save(trainedModel, dataView.Schema, "CRAS.zip");
-        return "Model training completed successfully";
+        return $"Model training completed successfully with {results.Metric*100}% accuracy";
     }
 
     //THIS METHOD ASSESSES THE CREDIT WORHTINESS OF A LOAN APPLICANT
     public LoanApplicantMLResponse AssessCreditWorthiness(LoanApplicantRequest request)
     {
-        Console.WriteLine(123);
-        _assessmentEngine = _mLContext.Model.CreatePredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse>(_creditAssessmentPipeline);
-        Console.WriteLine(string.Concat("Model Request :: ", request.ToString()));
+        _logger.Information($"Model Request :: {JsonConvert.SerializeObject(request)}");
         LoanApplicantMLResponse assessCreditWorthiness = _assessmentEngine.Predict(request);
-        Console.WriteLine(string.Concat("Model Response ::", assessCreditWorthiness.ToString()));
+        _logger.Information($"Model Response:: {JsonConvert.SerializeObject(assessCreditWorthiness)}");
         return assessCreditWorthiness;
     }
 }

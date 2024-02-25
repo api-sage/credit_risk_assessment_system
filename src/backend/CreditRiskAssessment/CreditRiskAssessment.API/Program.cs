@@ -2,7 +2,9 @@ using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Services;
 using CreditRiskAssessment.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Events;
 
 namespace CreditRiskAssessment.API
 {
@@ -20,10 +22,12 @@ namespace CreditRiskAssessment.API
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<ICRAS_Service, CRASPredictService>();
             builder.Services.AddScoped<ICheckCreditWorthinessService, CheckCreditWorthinessService>();
+            builder.Host.UseSerilog();
             Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Debug()
-                .WriteTo.Console()
-                .WriteTo.File(builder.Configuration.GetValue<string>("Serilog:FilePath"));
+                .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                .WriteTo.File(builder.Configuration.GetValue<string>("Serilog:FilePath"), rollingInterval: RollingInterval.Day, restrictedToMinimumLevel: LogEventLevel.Information)
+                .CreateLogger();
             builder.Services.AddSingleton(Log.Logger);
 
             var app = builder.Build();

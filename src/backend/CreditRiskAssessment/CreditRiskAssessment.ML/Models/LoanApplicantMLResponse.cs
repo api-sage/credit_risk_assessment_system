@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CreditRiskAssessment.ML.Models;
 
-public class LoanApplicantMLResponse : LoanApplicantRequest
+public class LoanApplicantMLResponse
 {
     [ColumnName("LoanStatus")]
     public bool PredictedLoanStatus { get; set; }
