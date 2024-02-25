@@ -1,5 +1,7 @@
-﻿using CreditRiskAssessment.Interfaces;
+﻿using CreditRiskAssessment.Infrastructure.Commons;
+using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
+using CreditRiskAssessment.ML.Models;
 using CreditRiskAssessment.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -36,7 +38,7 @@ namespace CreditRiskAssessment.API.Controllers
         public async Task<IActionResult> AssessCreditWorthiness(CheckCreditWorthinessRequest request)
         {
             _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
-            var response = await _checkCreditWorthinessService.CheckCreditWorthiness(request);
+            ResponseResult<LoanApplicantMLResponse> response = await _checkCreditWorthinessService.CheckCreditWorthiness(request);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }
