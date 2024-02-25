@@ -1,15 +1,15 @@
-﻿using CreditRiskAssessment.ML.Models;
+﻿using CreditRiskAssessment.Infrastructure.Commons;
+using CreditRiskAssessment.ML.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CreditRiskAssessment.ML.Interfaces
+namespace CreditRiskAssessment.ML.Interfaces;
+
+public interface ICRAS_Service
 {
-    public interface ICRAS_Service
-    {
-        Task<string> TrainModelAsync();
-        LoanApplicantMLResponse AssessCreditWorthiness(LoanApplicantRequest request);
-    }
+    Task<ResponseResult<string>> TrainModelAsync();
+    Task<ResponseResult<LoanApplicantMLResponse>> AssessCreditWorthiness(LoanApplicantRequest request);
 }
