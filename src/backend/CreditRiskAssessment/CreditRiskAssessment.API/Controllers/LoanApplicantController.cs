@@ -23,7 +23,6 @@ namespace CreditRiskAssessment.API.Controllers
             _checkCreditWorthinessService = checkCreditWorthinessService;
             _crasService = crasService;
             _logger = logger;
-
         }
 
         //ONLY CALL THIS METHOD WHEN YOU WANT TO RE-TRAIN THE CRAS.zip MACHINE LEARNING MODEL

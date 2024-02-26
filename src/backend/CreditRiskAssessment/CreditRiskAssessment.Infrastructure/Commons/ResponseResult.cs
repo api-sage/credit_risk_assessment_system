@@ -8,7 +8,8 @@ namespace CreditRiskAssessment.Infrastructure.Commons;
 
 public class ResponseResult<T>
 {
-    public string? status;
-    public string? message;
-    public T? data;
+    public DateTime timeStamp { get => DateTime.UtcNow; }
+    public string? status { get; set; }
+    public string? message { get; set; }
+    public T? data { get; set; }
 }

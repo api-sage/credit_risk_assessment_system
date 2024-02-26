@@ -22,7 +22,6 @@ public class CRASPredictService : ICRAS_Service
         _logger = logger;
         _mLContext = new MLContext();
         _creditAssessmentPipeline = _mLContext.Model.Load("CRAS.zip", out _dataViewSchema);
-        _assessmentEngine = _mLContext.Model.CreatePredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse>(_creditAssessmentPipeline);
     }
 
     //ONLY CALL THIS METHOD TO RE-TRAIN THE MODEL SHOULD YOU HAVE NEW SET OF ANALYTICAL DATASET
@@ -105,6 +104,9 @@ public class CRASPredictService : ICRAS_Service
     {
         //INSTATIATES RESPONSE FRAMEWORK
         ResponseResult<LoanApplicantMLResponse> response = new ResponseResult<LoanApplicantMLResponse>();
+
+        //CREATES ASSESSMENT ENGINE TO ASSESS CREDIT WORTHINESS
+        _assessmentEngine = _mLContext.Model.CreatePredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse>(_creditAssessmentPipeline);
 
         try
         {

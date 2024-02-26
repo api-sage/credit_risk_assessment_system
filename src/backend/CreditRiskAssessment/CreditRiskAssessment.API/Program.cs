@@ -1,3 +1,4 @@
+using CreditRiskAssessment.Infrastructure;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Services;
@@ -35,6 +36,12 @@ namespace CreditRiskAssessment.API
 
             //REGISTERS SERILOG AS A SINGLETON SERVICE
             builder.Services.AddSingleton(Log.Logger);
+
+            builder.Services.AddSwaggerGen(x =>
+            {
+                x.EnableAnnotations();
+                x.SchemaFilter<SwaggerSchemaExampleFilter>();
+            });
 
             var app = builder.Build();
 
