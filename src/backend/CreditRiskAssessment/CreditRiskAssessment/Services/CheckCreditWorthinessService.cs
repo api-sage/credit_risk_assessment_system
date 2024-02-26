@@ -70,8 +70,6 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
 
             //RESPONSE FROM THE CREDIT ASSESSMENT ENGINE
             var assessCreditWorthiness = _crasService.AssessCreditWorthiness(modelRequest);
-            //_logger.Information($"Credit Worthiness Response :: {JsonConvert.SerializeObject(assessCreditWorthiness)}");
-
             response.data = assessCreditWorthiness.Result.data;
             response.message = assessCreditWorthiness.Result.message;
             response.status = assessCreditWorthiness.Result.status;
