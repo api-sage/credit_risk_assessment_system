@@ -10,7 +10,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     { path: 'create-account', component: CreateAccountComponent },
     { path: 'login', component: LoginComponent },
     { path: 'about-page', component: aboutPageComponent },
-    // // { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }, // Protect dashboard with AuthGuard
+    { path: 'dashboard', component: DashboardComponent, }, // Protect dashboard with AuthGuard
     
 ];
 
