@@ -8,6 +8,14 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["CreditRiskAssessment.API/CreditRiskAssessment.API.csproj", "CreditRiskAssessment.API/"]
+COPY ["CreditRiskAssessment/CreditRiskAssessment.csproj", "CreditRiskAssessment/"]
+COPY ["CreditRiskAssessment.ML/CreditRiskAssessment.ML.csproj", "CreditRiskAssessment.ML/"]
+COPY ["CreditRiskAssessment.Infrastructure/CreditRiskAssessment.Infrastructure.csproj", "CreditRiskAssessment.Infrastructure/"]
+COPY ["CreditRiskAssessment.Test/CreditRiskAssessment.Test.csproj", "CreditRiskAssessment.Test/"]
+RUN dotnet restore "CreditRiskAssessment.Test/CreditRiskAssessment.Test.csproj"
+RUN dotnet restore "CreditRiskAssessment.Infrastructure/CreditRiskAssessment.Infrastructure.csproj"
+RUN dotnet restore "CreditRiskAssessment.ML/CreditRiskAssessment.ML.csproj"
+RUN dotnet restore "CreditRiskAssessment/CreditRiskAssessment.csproj"
 RUN dotnet restore "CreditRiskAssessment.API/CreditRiskAssessment.API.csproj"
 COPY . .
 WORKDIR "/src/CreditRiskAssessment.API"
@@ -19,4 +27,10 @@ RUN dotnet publish "CreditRiskAssessment.API.csproj" -c Release -o /app/publish 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+
+FROM final AS deploy
+WORKDIR /app
+COPY ["./CreditRiskAssessment.API/CRAS.zip", "/app/CRAS.zip"]
+COPY ["./CreditRiskAssessment.API/Helpers/cleaned_again.csv", "/app/Helpers/cleaned_again.csv"]
+
 ENTRYPOINT ["dotnet", "CreditRiskAssessment.API.dll"]
