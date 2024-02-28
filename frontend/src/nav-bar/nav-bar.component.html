@@ -1,17 +1,14 @@
-<section class="navbar">
-    <header class="container">
-        <div class="flex justify-between items-center w-[80%] mx-auto pt-8 pb-5">
-            <div class="flex gap-3 items-center">
-                <p class="font-bold text-5xl text-green-700 hover:text-green-800"><a routerLink="/landing-page">CRAS</a></p>
-                <div class="flex gap-12 font-medium items-center pt-2 pl-28 text-green-700">
-                    <p><a routerLink="/landing-page" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-800">Home</a></p>
-                    <p><a routerLink="/about-page" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-800">About Us</a></p>
-                </div>
-
-            </div>
-            <button><a type="button" class="bg-green-700 rounded-xl py-1.5 text-slate-50 px-3 font-medium hover:bg-green-800" routerLink="/create-account" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}">Get Started</a></button>
+<!-- Header Section -->
+<header class="navbar">
+    <nav class="nav flex p-4 mx-10 items-center flex-col justify-center sm:justify-between sm:flex-row">
+        <div class="left font-['Poppins']">
+            <a class="font-extrabold text-green-700 text-xl mr-3 sm:text-4xl sm:mr-20 " routerLink="/landing-page">CRAS</a>
+            <a routerLink="/landing-page" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="text-justify text-green-800 text-xl leading-[27.10px] mr-3 sm:mr-5 sm:align-super">Home</a>
+            <a routerLink="/about-page" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" class="text-justify text-stone-900 text-xl leading-[27.10px] sm:align-super">About Us</a>
         </div>
-        <hr class="h-0.5 bg-[#f7f2f2]"/>
-    </header>
-</section>
+        <div class="right">
+            <button><a routerLink="/create-account" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" class="bg-green-800 rounded-[20px] text-white text-xl font-medium px-5 py-2 ">Get Started</a></button>
+        </div>
+    </nav>
+</header>
 
