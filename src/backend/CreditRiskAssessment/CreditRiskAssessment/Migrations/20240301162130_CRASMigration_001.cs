@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CreditRiskAssessment.Migrations
 {
     /// <inheritdoc />
-    public partial class CRAS_Initial_Migration : Migration
+    public partial class CRASMigration_001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,19 +20,19 @@ namespace CreditRiskAssessment.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LoanAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AnnualIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyNetSalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    InterestRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LoanAmount = table.Column<double>(type: "float", nullable: false),
+                    AnnualIncome = table.Column<double>(type: "float", nullable: false),
+                    MonthlyNetSalary = table.Column<double>(type: "float", nullable: false),
+                    InterestRate = table.Column<double>(type: "float", nullable: false),
                     NumberOfLoan = table.Column<int>(type: "int", nullable: false),
                     NumberOfDelayedPayment = table.Column<int>(type: "int", nullable: false),
-                    OutstandingDebt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    DebtToIncomeRatio = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OutstandingDebt = table.Column<double>(type: "float", nullable: false),
+                    DebtToIncomeRatio = table.Column<float>(type: "real", nullable: false),
                     MonthsOfCreditHistory = table.Column<int>(type: "int", nullable: false),
-                    PaymentOfMinimumAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyInstallmentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AmountInvestedMonthly = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    PaymentOfMinimumAmount = table.Column<bool>(type: "bit", nullable: false),
+                    MonthlyInstallmentAmount = table.Column<double>(type: "float", nullable: false),
+                    AmountInvestedMonthly = table.Column<double>(type: "float", nullable: false),
+                    MonthlyBalance = table.Column<double>(type: "float", nullable: false),
                     PredictedCreditScore = table.Column<int>(type: "int", nullable: false),
                     CreditRating = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -45,23 +45,22 @@ namespace CreditRiskAssessment.Migrations
                 name: "Customers",
                 columns: table => new
                 {
-                    BVN = table.Column<int>(type: "int", maxLength: 11, nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BVN = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LoanAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AnnualIncome = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyNetSalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    InterestRate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    LoanAmount = table.Column<double>(type: "float", nullable: false),
+                    AnnualIncome = table.Column<double>(type: "float", nullable: false),
+                    MonthlyNetSalary = table.Column<double>(type: "float", nullable: false),
+                    InterestRate = table.Column<int>(type: "int", nullable: false),
                     NumberOfLoan = table.Column<int>(type: "int", nullable: false),
                     NumberOfDelayedPayment = table.Column<int>(type: "int", nullable: false),
-                    OutstandingDebt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    OutstandingDebt = table.Column<double>(type: "float", nullable: false),
                     MonthsOfCreditHistory = table.Column<int>(type: "int", nullable: false),
-                    PaymentOfMinimumAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyInstallmentAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AmountInvestedMonthly = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MonthlyBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    PaymentOfMinimumAmount = table.Column<bool>(type: "bit", nullable: false),
+                    MonthlyInstallmentAmount = table.Column<double>(type: "float", nullable: false),
+                    AmountInvestedMonthly = table.Column<double>(type: "float", nullable: false),
+                    MonthlyBalance = table.Column<double>(type: "float", nullable: false)
                 },
                 constraints: table =>
                 {

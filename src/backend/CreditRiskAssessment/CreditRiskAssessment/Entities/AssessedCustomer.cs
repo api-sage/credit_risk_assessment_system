@@ -18,19 +18,19 @@ public class AssessedCustomer
     public string BVN { get; set; }
     public int Age { get; set; }
     public string Occupation { get; set; }
-    public decimal LoanAmount { get; set; }
-    public decimal AnnualIncome { get; set; }
-    public decimal MonthlyNetSalary { get; set; }
-    public decimal InterestRate { get; set; }
+    public double LoanAmount { get; set; }
+    public double AnnualIncome { get; set; }
+    public double MonthlyNetSalary { get; set; }
+    public double InterestRate { get; set; }
     public int NumberOfLoan { get; set; }
     public int NumberOfDelayedPayment { get; set; }
-    public decimal OutstandingDebt { get; set; }
-    public decimal DebtToIncomeRatio { get; set; }
+    public double OutstandingDebt { get; set; }
+    public float DebtToIncomeRatio { get; set; }
     public int MonthsOfCreditHistory { get; set; }
-    public decimal PaymentOfMinimumAmount { get; set; }
-    public decimal MonthlyInstallmentAmount { get; set; }
-    public decimal AmountInvestedMonthly { get; set; }
-    public decimal MonthlyBalance { get; set; }
+    public bool PaymentOfMinimumAmount { get; set; }
+    public double MonthlyInstallmentAmount { get; set; }
+    public double AmountInvestedMonthly { get; set; }
+    public double MonthlyBalance { get; set; }
     public int PredictedCreditScore { get; set; }
     public string CreditRating { get; set; }
 }

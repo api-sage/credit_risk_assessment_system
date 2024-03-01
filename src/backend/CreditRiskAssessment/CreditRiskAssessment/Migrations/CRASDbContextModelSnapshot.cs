@@ -31,11 +31,11 @@ namespace CreditRiskAssessment.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("AmountInvestedMonthly")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("AmountInvestedMonthly")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("AnnualIncome")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("AnnualIncome")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("AssessedDate")
                         .ValueGeneratedOnAdd()
@@ -45,23 +45,23 @@ namespace CreditRiskAssessment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("DebtToIncomeRatio")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<float>("DebtToIncomeRatio")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("InterestRate")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("InterestRate")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("LoanAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("LoanAmount")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("MonthlyBalance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("MonthlyBalance")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("MonthlyInstallmentAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("MonthlyInstallmentAmount")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("MonthlyNetSalary")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("MonthlyNetSalary")
+                        .HasColumnType("float");
 
                     b.Property<int>("MonthsOfCreditHistory")
                         .HasColumnType("int");
@@ -80,11 +80,11 @@ namespace CreditRiskAssessment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("OutstandingDebt")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("OutstandingDebt")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("PaymentOfMinimumAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<bool>("PaymentOfMinimumAmount")
+                        .HasColumnType("bit");
 
                     b.Property<int>("PredictedCreditScore")
                         .HasColumnType("int");
@@ -96,36 +96,33 @@ namespace CreditRiskAssessment.Migrations
 
             modelBuilder.Entity("CreditRiskAssessment.Entities.Customer", b =>
                 {
-                    b.Property<int>("BVN")
-                        .ValueGeneratedOnAdd()
+                    b.Property<string>("BVN")
                         .HasMaxLength(11)
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BVN"));
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("AmountInvestedMonthly")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("AmountInvestedMonthly")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("AnnualIncome")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("AnnualIncome")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("InterestRate")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("InterestRate")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("LoanAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("LoanAmount")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("MonthlyBalance")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("MonthlyBalance")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("MonthlyInstallmentAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("MonthlyInstallmentAmount")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("MonthlyNetSalary")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("MonthlyNetSalary")
+                        .HasColumnType("float");
 
                     b.Property<int>("MonthsOfCreditHistory")
                         .HasColumnType("int");
@@ -144,11 +141,11 @@ namespace CreditRiskAssessment.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("OutstandingDebt")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("OutstandingDebt")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("PaymentOfMinimumAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<bool>("PaymentOfMinimumAmount")
+                        .HasColumnType("bit");
 
                     b.HasKey("BVN");
 

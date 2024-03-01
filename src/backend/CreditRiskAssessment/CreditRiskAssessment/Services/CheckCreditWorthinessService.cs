@@ -1,10 +1,16 @@
-﻿using CreditRiskAssessment.Infrastructure.Commons;
+﻿using CreditRiskAssessment.AppDbContext;
+using CreditRiskAssessment.Entities;
+using CreditRiskAssessment.Infrastructure.Commons;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Models;
 using CreditRiskAssessment.Models.Request;
 using CreditRiskAssessment.Models.Response;
+using CreditRiskAssessment.Repository.Interfaces;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Serilog;
 using System.ComponentModel.Design.Serialization;
@@ -15,10 +21,12 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
 {
     private ICRAS_Service _crasService;
     private ILogger _logger;
-    public CheckCreditWorthinessService(ICRAS_Service crasService, ILogger logger)
+    private readonly CRASDbContext _crasDbContext;
+    public CheckCreditWorthinessService(ICRAS_Service crasService, ILogger logger, CRASDbContext crasDbContext)
     {
         _logger = logger;
         _crasService = crasService;
+        _crasDbContext = crasDbContext;
     }
     //TAKES LOAN APPLICANT'S REQUEST AND SENDS IT TO THE ASSESSMENT ENGINE FOR ASSESSMENT
     public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(AssessRiskLevelRequest request)
@@ -72,7 +80,6 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
 
             response.message = assessCreditWorthiness.message;
             response.status = assessCreditWorthiness.status;
-
             return response;
         }
         catch (Exception ex)
@@ -81,6 +88,59 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             response.status = Constants.ERROR;
             response.message = ex.Message;
             return response;
+        }
+    }
+
+    //THIS METHOD READS THE FIRST 100 ROWS ON TEH CSV FILE AND PERSISTS DATA ACCORDINGLY ON THE CUSTOMERS TABLE ON THE SQL DB
+    private void PersistCSVDataOnCustomersTable()
+    {
+        var csvDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads";
+        var csvfile = Path.Combine(csvDirectory, "ReadFile.csv");
+
+        if (File.Exists(csvfile))
+        {
+            var customers = new List<Customer>();
+            var customer = new Customer();
+
+            using (var reader = new StreamReader(csvfile))
+            {
+                reader.ReadLine();
+                var count = 100;
+                while (count > 0)
+                {
+                    var line = reader.ReadLine();
+                    var dataArray = line.Split(",");
+
+                    customer.Name = dataArray[0];
+                    customer.BVN = dataArray[1];
+                    customer.Age = int.Parse(dataArray[2]);
+                    customer.Occupation = dataArray[3];
+                    customer.LoanAmount = double.Parse(dataArray[4]);
+                    customer.AnnualIncome = double.Parse(dataArray[5]);
+                    customer.MonthlyNetSalary = double.Parse(dataArray[6]);
+                    customer.InterestRate = int.Parse(dataArray[7]);
+                    customer.NumberOfLoan = int.Parse(dataArray[8]);
+                    customer.NumberOfDelayedPayment = int.Parse(dataArray[9]);
+                    customer.OutstandingDebt = double.Parse(dataArray[10]);
+                    customer.MonthsOfCreditHistory = int.Parse(dataArray[11]);
+                    customer.PaymentOfMinimumAmount = int.Parse(dataArray[12]) == 1;
+                    customer.MonthlyInstallmentAmount = double.Parse(dataArray[13]);
+                    customer.AmountInvestedMonthly = double.Parse(dataArray[14]);
+                    customer.MonthlyInstallmentAmount = double.Parse(dataArray[15]);
+
+                    customers.Add(customer);
+                    count--;
+                }
+            }
+
+            foreach (var customerData in customers)
+            {
+                if (_crasDbContext.Customers.Any(customerData => customerData.BVN == null))
+                {
+                    _crasDbContext.Customers.Add(customerData);
+                    _crasDbContext.SaveChanges();
+                }
+            }
         }
     }
 }
