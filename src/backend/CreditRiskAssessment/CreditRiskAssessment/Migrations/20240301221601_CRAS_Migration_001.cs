@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CreditRiskAssessment.Migrations
 {
     /// <inheritdoc />
-    public partial class CRAS_Initial_Migration : Migration
+    public partial class CRAS_Migration_001 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,9 +15,11 @@ namespace CreditRiskAssessment.Migrations
                 name: "AssessedCustomers",
                 columns: table => new
                 {
-                    BVN = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
+                    SN = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AssessedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BVN = table.Column<string>(type: "nvarchar(11)", maxLength: 11, nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
                     Occupation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LoanAmount = table.Column<double>(type: "float", nullable: false),
@@ -38,7 +40,7 @@ namespace CreditRiskAssessment.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AssessedCustomers", x => x.BVN);
+                    table.PrimaryKey("PK_AssessedCustomers", x => x.SN);
                 });
 
             migrationBuilder.CreateTable(

@@ -31,7 +31,6 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     //TAKES LOAN APPLICANT'S REQUEST AND SENDS IT TO THE ASSESSMENT ENGINE FOR ASSESSMENT
     public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(AssessRiskLevelRequest request)
     {
-
         //INITIALIZES RESPONSE FRAMEWORK
         var response = new ResponseResult<AssessRiskLevelResponse>()
         {

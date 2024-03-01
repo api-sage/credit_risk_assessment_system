@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CreditRiskAssessment.Migrations
 {
     [DbContext(typeof(CRASDbContext))]
-    [Migration("20240301215252_CRAS_Initial_Migration")]
-    partial class CRAS_Initial_Migration
+    [Migration("20240301221601_CRAS_Migration_001")]
+    partial class CRAS_Migration_001
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,11 @@ namespace CreditRiskAssessment.Migrations
 
             modelBuilder.Entity("CreditRiskAssessment.Entities.AssessedCustomer", b =>
                 {
-                    b.Property<string>("BVN")
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
+                    b.Property<int>("SN")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SN"));
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -43,6 +45,11 @@ namespace CreditRiskAssessment.Migrations
                     b.Property<DateTime>("AssessedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("BVN")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<string>("CreditRating")
                         .IsRequired()
@@ -92,7 +99,7 @@ namespace CreditRiskAssessment.Migrations
                     b.Property<int>("PredictedCreditScore")
                         .HasColumnType("int");
 
-                    b.HasKey("BVN");
+                    b.HasKey("SN");
 
                     b.ToTable("AssessedCustomers");
                 });

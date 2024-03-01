@@ -10,10 +10,12 @@ namespace CreditRiskAssessment.Entities;
 
 public class AssessedCustomer
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int SN { get; set; }
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public DateTime AssessedDate { get; set; }
     public string Name { get; set; }
-    [Key]
     [StringLength(11)]
     public string BVN { get; set; }
     public int Age { get; set; }
