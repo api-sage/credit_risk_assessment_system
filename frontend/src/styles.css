@@ -2,3 +2,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: poppins;
+}
+
+
+
+li {
+  list-style: none;
+}
+
+
+@media screen  and (max-width: 600px) {
+  .container {
+    max-width: 1440px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+}
