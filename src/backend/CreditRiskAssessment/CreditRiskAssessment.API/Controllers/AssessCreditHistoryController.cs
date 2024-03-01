@@ -12,14 +12,14 @@ using Tensorflow;
 namespace CreditRiskAssessment.API.Controllers
 {
     [ApiController]
-    [Route("apply/[Action]")]
-    public class LoanApplicantController : Controller
+    [Route("/[Action]")]
+    public class AssessCreditHistoryController : Controller
     {
         private ICheckCreditWorthinessService _checkCreditWorthinessService;
         private ICRAS_Service _crasService;
         private Serilog.ILogger _logger;
 
-        public LoanApplicantController(ICheckCreditWorthinessService checkCreditWorthinessService, ICRAS_Service crasService, Serilog.ILogger logger)
+        public AssessCreditHistoryController(ICheckCreditWorthinessService checkCreditWorthinessService, ICRAS_Service crasService, Serilog.ILogger logger)
         {
             _checkCreditWorthinessService = checkCreditWorthinessService;
             _crasService = crasService;
@@ -29,23 +29,23 @@ namespace CreditRiskAssessment.API.Controllers
         //ONLY CALL THIS METHOD WHEN YOU WANT TO RE-TRAIN THE CRAS.zip MACHINE LEARNING MODEL
         //TO ACCESS THIS METHOD FOR THE ABOVE PURPOSE, SIMPLY UNCOMMENT IT
 
-        [HttpGet]
-        [SwaggerOperation(Summary = "Re-trains the Machine Learning model")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(string))]
-        [SwaggerResponse(StatusCodes.Status400BadRequest)]
-        [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> TrainModel()
-        {
-            var response = await _crasService.TrainModelAsync();
-            return Ok(response);
-        }
+        //[HttpGet]
+        //[SwaggerOperation(Summary = "Re-trains the Machine Learning model")]
+        //[SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(string))]
+        //[SwaggerResponse(StatusCodes.Status400BadRequest)]
+        //[SwaggerResponse(StatusCodes.Status500InternalServerError)]
+        //public async Task<IActionResult> TrainModel()
+        //{
+        //    var response = await _crasService.TrainModelAsync();
+        //    return Ok(response);
+        //}
 
         [HttpPost]
         [SwaggerOperation(Summary = "Assesses the credit worthiness of loan applicants based on the data provided by them")]
         [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(ResponseResult<AssessRiskLevelResponse>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CheckCreditScore(string bvn)
+        public async Task<IActionResult> AssessCreditRisk(string bvn)
         {
             _logger.Information($"Client Request:: {JsonConvert.SerializeObject(bvn)}");
             ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(bvn);
