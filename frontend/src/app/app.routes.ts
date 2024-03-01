@@ -6,8 +6,8 @@ import { aboutPageComponent } from '../about-page/about-page.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
  export const routes: Routes = [
-    { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
-    { path: 'landing-page', component: landingPageComponent },
+    // { path: '', redirectTo: '/landing-page', pathMatch: 'full' },
+    { path: '', component: landingPageComponent },
     { path: 'create-account', component: CreateAccountComponent },
     { path: 'login', component: LoginComponent },
     { path: 'about-page', component: aboutPageComponent },
