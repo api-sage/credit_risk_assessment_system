@@ -1,3 +1,5 @@
+<app-nav-bar/>
+
 <div class="sections-parent">
   <section class="upper-section">
     <div class="get-started">
@@ -5,7 +7,7 @@
         We help you know your eligibility to get a loan <br />and
         <span>BLAH BLAH BLAH</span>
       </h2>
-      <button class="start-button">Get Started</button>
+      <button><a routerLink="/create-account" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" class="bg-green-800 rounded-[20px] text-white text-xl font-medium px-5 py-2 ">Get Started</a></button>
     </div>
 
     <div class="reason-why-container">
