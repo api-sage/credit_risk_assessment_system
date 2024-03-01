@@ -24,7 +24,12 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(AssessRiskLevelRequest request)
     {
         //INITIALIZES RESPONSE FRAMEWORK
-        var response = new ResponseResult<AssessRiskLevelResponse>();
+        var response = new ResponseResult<AssessRiskLevelResponse>()
+        {
+            status = Constants.FAIL,
+            message = string.Empty,
+            data = new AssessRiskLevelResponse()
+        };
 
         try
         {
@@ -51,11 +56,11 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             _logger.Information($"Model Request to Assessment Engine :: {JsonConvert.SerializeObject(modelRequest)}");
 
             //RESPONSE FROM THE CREDIT ASSESSMENT ENGINE
-            var assessCreditWorthiness = _crasService.CalculateCreditScore(modelRequest);
+            var assessCreditWorthiness = _crasService.CalculateCreditScore(modelRequest).Result;
 
-            response.data!.PredictedCreditScore = assessCreditWorthiness.Result.data!.PredictedCreditScore;
+            response.data.PredictedCreditScore = (int)Math.Round(assessCreditWorthiness.data.PredictedCreditScore);
             //USE SWITCH EXPRESSION TO DETERMINE RISK LEVEL
-            response.data.RiskLevel = (int)assessCreditWorthiness.Result.data.PredictedCreditScore 
+            response.data.CreditRating = (int)assessCreditWorthiness.data.PredictedCreditScore 
                 switch
                     {
                         >= 720 => "A",
@@ -65,8 +70,8 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
                         _ => "F"
                     };
 
-            response.message = assessCreditWorthiness.Result.message;
-            response.status = assessCreditWorthiness.Result.status;
+            response.message = assessCreditWorthiness.message;
+            response.status = assessCreditWorthiness.status;
 
             return response;
         }

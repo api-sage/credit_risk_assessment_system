@@ -8,6 +8,6 @@ namespace CreditRiskAssessment.Models.Response;
 
 public class AssessRiskLevelResponse
 {
-    public float PredictedCreditScore { get; set; }
-    public string RiskLevel { get; set; }
+    public int PredictedCreditScore { get; set; }
+    public string CreditRating { get; set; }
 }
