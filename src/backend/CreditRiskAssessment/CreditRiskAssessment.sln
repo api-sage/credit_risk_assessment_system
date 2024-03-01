@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditRiskAssessment.API", "CreditRiskAssessment.API\CreditRiskAssessment.API.csproj", "{E03D0D54-010E-4EDF-881A-F7B9EBB697A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.API", "CreditRiskAssessment.API\CreditRiskAssessment.API.csproj", "{E03D0D54-010E-4EDF-881A-F7B9EBB697A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditRiskAssessment", "CreditRiskAssessment\CreditRiskAssessment.csproj", "{7807079C-6890-4FB7-B7DF-B5C46BCF27DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment", "CreditRiskAssessment\CreditRiskAssessment.csproj", "{7807079C-6890-4FB7-B7DF-B5C46BCF27DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditRiskAssessment.Infrastructure", "CreditRiskAssessment.Infrastructure\CreditRiskAssessment.Infrastructure.csproj", "{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.Infrastructure", "CreditRiskAssessment.Infrastructure\CreditRiskAssessment.Infrastructure.csproj", "{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditRiskAssessment.ML", "CreditRiskAssessment.ML\CreditRiskAssessment.ML.csproj", "{7636B1A9-8D03-49AE-8335-D0EA8DE7AF41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.ML", "CreditRiskAssessment.ML\CreditRiskAssessment.ML.csproj", "{7636B1A9-8D03-49AE-8335-D0EA8DE7AF41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreditRiskAssessment.Test", "CreditRiskAssessment.Test\CreditRiskAssessment.Test.csproj", "{580505B6-9F36-4C6E-9003-32DB243BDF72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.Test", "CreditRiskAssessment.Test\CreditRiskAssessment.Test.csproj", "{580505B6-9F36-4C6E-9003-32DB243BDF72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -13,15 +13,17 @@ public class CRASPredictService : ICRAS_Service
 {
     private MLContext _mLContext;
     private DataViewSchema _dataViewSchema;
-    private ITransformer _creditAssessmentPipeline;
-    private PredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse> _assessmentEngine;
+    private ITransformer _creditScorePipeline;
+    private PredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse> _creditScoreEngine;
     private string analyticalDataPath;
     private ILogger _logger;
     public CRASPredictService(ILogger logger)
     {
         _logger = logger;
         _mLContext = new MLContext();
-        _creditAssessmentPipeline = _mLContext.Model.Load("CRAS.zip", out _dataViewSchema);
+        _creditScorePipeline = _mLContext.Model.Load("CRASML.zip", out _dataViewSchema);
+        //CREATES ASSESSMENT ENGINE TO ASSESS CREDIT WORTHINESS
+        _creditScoreEngine = _mLContext.Model.CreatePredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse>(_creditScorePipeline);
     }
 
     //ONLY CALL THIS METHOD TO RE-TRAIN THE MODEL SHOULD YOU HAVE NEW SET OF ANALYTICAL DATASET
@@ -37,10 +39,10 @@ public class CRASPredictService : ICRAS_Service
         try
         {
             //PATH TO CLEANED ANALYTICAL DATASET
-            analyticalDataPath = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "cleaned_again.csv");
+            analyticalDataPath = Path.Combine(Directory.GetCurrentDirectory(), "Helpers", "CRAS_data_ML.csv");
 
             //READS THROUGH THE CLEANED DATASET AND INFERS MORE INFORMATION FROM IT FOR EACH COLUMN. INFORMATION SUCH AS DATA TYPE, QUOTED STRINGS, ETC
-            ColumnInferenceResults columnInferenceResult = _mLContext.Auto().InferColumns(analyticalDataPath, labelColumnName: "LoanStatus", groupColumns: false);
+            ColumnInferenceResults columnInferenceResult = _mLContext.Auto().InferColumns(analyticalDataPath, labelColumnName: "CreditScore", groupColumns: false);
 
             //LOADS INFORMATION MADE FROM COLUMN INFERENCES INTO THE TEXT LOADER
             TextLoader textLoader = _mLContext.Data.CreateTextLoader(columnInferenceResult.TextLoaderOptions);
@@ -53,14 +55,13 @@ public class CRASPredictService : ICRAS_Service
 
             //BUILDS ML PIPELINE FOR DATA TRANSFORMATION USING AUTOML
             SweepablePipeline pipeline = _mLContext.Auto().Featurizer(dataView, columnInformation: columnInferenceResult.ColumnInformation)
-                .Append(_mLContext.Auto().BinaryClassification(labelColumnName: columnInferenceResult.ColumnInformation.LabelColumnName));
+                .Append(_mLContext.Auto().Regression(labelColumnName: columnInferenceResult.ColumnInformation.LabelColumnName));
 
             //SETS MODEL TRAINING, DESIRED METRIC PARAMETERS, TRAINING TIME AND DATASET FOR TRAINING PURPOSE
             AutoMLExperiment autoMLExperiment = _mLContext.Auto().CreateExperiment();
             autoMLExperiment
                 .SetPipeline(pipeline)
-                .SetBinaryClassificationMetric(metric: BinaryClassificationMetric.F1Score, labelColumn: columnInferenceResult.ColumnInformation.LabelColumnName)
-                .SetBinaryClassificationMetric(metric: BinaryClassificationMetric.Accuracy, labelColumn: columnInferenceResult.ColumnInformation.LabelColumnName)
+                .SetRegressionMetric(metric: RegressionMetric.RSquared, labelColumn: columnInferenceResult.ColumnInformation.LabelColumnName)
                 .SetTrainingTimeInSeconds(600)
                 .SetDataset(trainTestData);
 
@@ -100,13 +101,10 @@ public class CRASPredictService : ICRAS_Service
     }
 
     //THIS METHOD ASSESSES THE CREDIT WORHTINESS OF A LOAN APPLICANT
-    public async Task<ResponseResult<LoanApplicantMLResponse>> AssessCreditWorthiness(LoanApplicantRequest request)
+    public async Task<ResponseResult<LoanApplicantMLResponse>> CalculateCreditScore(LoanApplicantRequest request)
     {
         //INSTATIATES RESPONSE FRAMEWORK
         ResponseResult<LoanApplicantMLResponse> response = new ResponseResult<LoanApplicantMLResponse>();
-
-        //CREATES ASSESSMENT ENGINE TO ASSESS CREDIT WORTHINESS
-        _assessmentEngine = _mLContext.Model.CreatePredictionEngine<LoanApplicantRequest, LoanApplicantMLResponse>(_creditAssessmentPipeline);
 
         try
         {
@@ -116,9 +114,9 @@ public class CRASPredictService : ICRAS_Service
             //PredictedLoanStatus IS TRUE IF THE MODEL DECIDES, BASED ON TRAINING, THAT A LOAN APPLICANT IS WORHTY OF A LOAN AMOUNT
             //PredictedLoanStatus IS FALSE IF THE MODEL DECIDES, BASED ON TRAINING, THAT A LOAN APPLICANT IS NOT WORTHY OF A LOAN AMOUNT
             //OTHER METRIC PARAMETERS SUCH AS Probability AND Score ARE PROVIDED AS WELL
-            LoanApplicantMLResponse assessCreditWorthiness = _assessmentEngine.Predict(request);
-            _logger.Information($"Model Response:: {JsonConvert.SerializeObject(assessCreditWorthiness)}");
-            response.data = assessCreditWorthiness;
+            LoanApplicantMLResponse calculateCreditScore = _creditScoreEngine.Predict(request);
+            _logger.Information($"Model Response:: {JsonConvert.SerializeObject(calculateCreditScore)}");
+            response.data = calculateCreditScore;
         }
         catch (Exception ex)
         {
@@ -128,7 +126,7 @@ public class CRASPredictService : ICRAS_Service
             return response;
         }
         response.status = Constants.SUCCESS;
-        response.message = $"Credit worthiness for a loan amount of NGN{request.CurrentLoanAmount} has been assessed successfully";
+        response.message = $"Credit history predicted successfully";
         return response;
     }
 }

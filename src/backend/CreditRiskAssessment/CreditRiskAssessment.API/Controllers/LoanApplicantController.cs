@@ -3,6 +3,7 @@ using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Models;
 using CreditRiskAssessment.Models.Request;
+using CreditRiskAssessment.Models.Response;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
@@ -28,26 +29,26 @@ namespace CreditRiskAssessment.API.Controllers
         //ONLY CALL THIS METHOD WHEN YOU WANT TO RE-TRAIN THE CRAS.zip MACHINE LEARNING MODEL
         //TO ACCESS THIS METHOD FOR THE ABOVE PURPOSE, SIMPLY UNCOMMENT IT
 
-        //[HttpGet]
-        //[SwaggerOperation(Summary = "Re-trains the Machine Learning model")]
-        //[SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(string))]
-        //[SwaggerResponse(StatusCodes.Status400BadRequest)]
-        //[SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        //public async Task<IActionResult> TrainModel()
-        //{
-        //    var response = await _crasService.TrainModelAsync();
-        //    return Ok(response);
-        //}
+        [HttpGet]
+        [SwaggerOperation(Summary = "Re-trains the Machine Learning model")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(string))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> TrainModel()
+        {
+            var response = await _crasService.TrainModelAsync();
+            return Ok(response);
+        }
 
         [HttpPost]
         [SwaggerOperation(Summary = "Assesses the credit worthiness of loan applicants based on the data provided by them")]
         [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(LoanApplicantMLResponse))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AssessCreditWorthiness(CheckCreditWorthinessRequest request)
+        public async Task<IActionResult> CheckCreditScore(AssessRiskLevelRequest request)
         {
             _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
-            ResponseResult<LoanApplicantMLResponse> response = await _checkCreditWorthinessService.CheckCreditWorthiness(request);
+            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(request);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }
