@@ -12,6 +12,5 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     { path: 'login', component: LoginComponent },
     { path: 'about-page', component: aboutPageComponent },
     { path: 'dashboard', component: DashboardComponent, }, // Protect dashboard with AuthGuard
-    
 ];
 
