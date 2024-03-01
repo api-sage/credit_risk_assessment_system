@@ -31,6 +31,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     //TAKES LOAN APPLICANT'S REQUEST AND SENDS IT TO THE ASSESSMENT ENGINE FOR ASSESSMENT
     public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(AssessRiskLevelRequest request)
     {
+
         //INITIALIZES RESPONSE FRAMEWORK
         var response = new ResponseResult<AssessRiskLevelResponse>()
         {
@@ -100,16 +101,15 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
         if (File.Exists(csvfile))
         {
             var customers = new List<Customer>();
-            var customer = new Customer();
 
             using (var reader = new StreamReader(csvfile))
             {
                 reader.ReadLine();
-                var count = 100;
-                while (count > 0)
+                while (customers.Count()<51)
                 {
                     var line = reader.ReadLine();
-                    var dataArray = line.Split(",");
+                    var dataArray = line!.Split(",");
+                    var customer = new Customer();
 
                     customer.Name = dataArray[0];
                     customer.BVN = dataArray[1];
@@ -126,20 +126,19 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
                     customer.PaymentOfMinimumAmount = int.Parse(dataArray[12]) == 1;
                     customer.MonthlyInstallmentAmount = double.Parse(dataArray[13]);
                     customer.AmountInvestedMonthly = double.Parse(dataArray[14]);
-                    customer.MonthlyInstallmentAmount = double.Parse(dataArray[15]);
+                    customer.MonthlyBalance = double.Parse(dataArray[15]);
 
-                    customers.Add(customer);
-                    count--;
+                    if (customers.FirstOrDefault(c => c.BVN == customer.BVN) == null)
+                    {
+                        customers.Add(customer);
+                    }
                 }
             }
 
             foreach (var customerData in customers)
             {
-                if (_crasDbContext.Customers.Any(customerData => customerData.BVN == null))
-                {
                     _crasDbContext.Customers.Add(customerData);
                     _crasDbContext.SaveChanges();
-                }
             }
         }
     }

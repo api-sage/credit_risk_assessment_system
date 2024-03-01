@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CreditRiskAssessment.Migrations
 {
     /// <inheritdoc />
-    public partial class CRASMigration_001 : Migration
+    public partial class CRAS_Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

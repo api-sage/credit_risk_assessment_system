@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CreditRiskAssessment.Migrations
 {
     [DbContext(typeof(CRASDbContext))]
-    [Migration("20240301162130_CRASMigration_001")]
-    partial class CRASMigration_001
+    [Migration("20240301215252_CRAS_Initial_Migration")]
+    partial class CRAS_Initial_Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
