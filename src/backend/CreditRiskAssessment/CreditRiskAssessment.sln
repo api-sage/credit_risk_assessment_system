@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.API", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment", "CreditRiskAssessment\CreditRiskAssessment.csproj", "{7807079C-6890-4FB7-B7DF-B5C46BCF27DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.Infrastructure", "CreditRiskAssessment.Infrastructure\CreditRiskAssessment.Infrastructure.csproj", "{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.ML", "CreditRiskAssessment.ML\CreditRiskAssessment.ML.csproj", "{7636B1A9-8D03-49AE-8335-D0EA8DE7AF41}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreditRiskAssessment.Test", "CreditRiskAssessment.Test\CreditRiskAssessment.Test.csproj", "{580505B6-9F36-4C6E-9003-32DB243BDF72}"
@@ -27,10 +25,6 @@ Global
 		{7807079C-6890-4FB7-B7DF-B5C46BCF27DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7807079C-6890-4FB7-B7DF-B5C46BCF27DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7807079C-6890-4FB7-B7DF-B5C46BCF27DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F883F08-7FDF-4EC6-A6FD-B28E010CB684}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7636B1A9-8D03-49AE-8335-D0EA8DE7AF41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7636B1A9-8D03-49AE-8335-D0EA8DE7AF41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7636B1A9-8D03-49AE-8335-D0EA8DE7AF41}.Release|Any CPU.ActiveCfg = Release|Any CPU

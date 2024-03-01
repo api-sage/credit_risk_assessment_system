@@ -42,13 +42,13 @@ namespace CreditRiskAssessment.API.Controllers
 
         [HttpPost]
         [SwaggerOperation(Summary = "Assesses the credit worthiness of loan applicants based on the data provided by them")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(LoanApplicantMLResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(ResponseResult<AssessRiskLevelResponse>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CheckCreditScore(AssessRiskLevelRequest request)
+        public async Task<IActionResult> CheckCreditScore(string bvn)
         {
-            _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
-            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(request);
+            _logger.Information($"Client Request:: {JsonConvert.SerializeObject(bvn)}");
+            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(bvn);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }

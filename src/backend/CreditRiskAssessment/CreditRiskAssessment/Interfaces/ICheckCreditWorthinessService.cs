@@ -12,5 +12,5 @@ namespace CreditRiskAssessment.Interfaces;
 
 public interface ICheckCreditWorthinessService
 {
-    Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(AssessRiskLevelRequest request);
+    Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(string request);
 }

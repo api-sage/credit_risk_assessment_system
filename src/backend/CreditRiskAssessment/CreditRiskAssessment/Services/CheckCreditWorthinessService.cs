@@ -4,16 +4,10 @@ using CreditRiskAssessment.Infrastructure.Commons;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Models;
-using CreditRiskAssessment.Models.Request;
 using CreditRiskAssessment.Models.Response;
-using CreditRiskAssessment.Repository.Interfaces;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Serilog;
-using System.ComponentModel.Design.Serialization;
 
 namespace CreditRiskAssessment.Services;
 
@@ -28,8 +22,8 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
         _crasService = crasService;
         _crasDbContext = crasDbContext;
     }
-    //TAKES LOAN APPLICANT'S REQUEST AND SENDS IT TO THE ASSESSMENT ENGINE FOR ASSESSMENT
-    public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(AssessRiskLevelRequest request)
+
+    public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(string bvn)
     {
         //INITIALIZES RESPONSE FRAMEWORK
         var response = new ResponseResult<AssessRiskLevelResponse>()
@@ -39,47 +33,91 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             data = new AssessRiskLevelResponse()
         };
 
+        if (bvn.Length != 11)
+        {
+            response.message = "Invalid BVN provided";
+            return response;
+        };
+
         try
         {
-            _logger.Information($"Request :: {JsonConvert.SerializeObject(request)}");
+            Customer customerCreditHistory = GetCreditHistory(bvn).Result;
 
-            //THIS MAPS REQUEST FROM USER (LOAN APPLICANT) TO REQUEST TYPE THE ML MODEL EXPECTS
+            if (customerCreditHistory == null)
+            {
+                response.message = $"BVN number {bvn} does not exist";
+                return response;
+            };
+
+            //CALCULATES THE DEBT TO INCOME RATIO IN PERCENTAGE
+            var debtToIncome = ((customerCreditHistory.OutstandingDebt * 12)/customerCreditHistory.AnnualIncome)*100;
+
+            //THIS MAPS REQUEST FROM USER(LOAN APPLICANT) TO REQUEST TYPE THE ML MODEL EXPECTS
             var modelRequest = new LoanApplicantRequest
             {
-                LoanAmount = request.LoanAmount, 
-                AnnualIncome = request.AnnualIncome, 
-                MonthlyNetSalary = request.MonthlyNetSalary, 
-                InterestRate = request.InterestRate, 
-                NumberOfLoan = request.NumberOfLoan, 
-                NumberOfDelayedPayment = request.NumberOfDelayedPayment, 
-                OutstandingDebt = request.OutstandingDebt, 
-                DebtToIncomeRatio = request.DebtToIncomeRatio, 
-                MonthsOfCreditHistory = request.MonthsOfCreditHistory, 
-                PaymentOfMinimumAmount = request.PaymentOfMinimumAmount, 
-                MonthlyInstallmentAmount = request.MonthlyInstallmentAmount, 
-                AmountInvestedMonthly = request.AmountInvestedMonthly, 
-                MonthlyBalance = request.MonthlyBalance
+                LoanAmount = (float)customerCreditHistory.LoanAmount,
+                AnnualIncome = (float)customerCreditHistory.AnnualIncome,
+                MonthlyNetSalary = (float)customerCreditHistory.MonthlyNetSalary,
+                InterestRate = (float)customerCreditHistory.InterestRate,
+                NumberOfLoan = (float)customerCreditHistory.NumberOfLoan,
+                NumberOfDelayedPayment = (float)customerCreditHistory.NumberOfDelayedPayment,
+                OutstandingDebt = (float)customerCreditHistory.OutstandingDebt,
+                DebtToIncomeRatio = (float)debtToIncome,
+                MonthsOfCreditHistory = (float)customerCreditHistory.MonthsOfCreditHistory,
+                PaymentOfMinimumAmount = customerCreditHistory.PaymentOfMinimumAmount ? 1 : 0,
+                MonthlyInstallmentAmount = (float)customerCreditHistory.MonthlyInstallmentAmount,
+                AmountInvestedMonthly = (float)customerCreditHistory.AmountInvestedMonthly,
+                MonthlyBalance = (float)customerCreditHistory.MonthlyBalance
             };
 
             _logger.Information($"Model Request to Assessment Engine :: {JsonConvert.SerializeObject(modelRequest)}");
 
             //RESPONSE FROM THE CREDIT ASSESSMENT ENGINE
-            var assessCreditWorthiness = _crasService.CalculateCreditScore(modelRequest).Result;
+            var predictCreditScore = _crasService.CalculateCreditScore(modelRequest).Result;
 
-            response.data.PredictedCreditScore = (int)Math.Round(assessCreditWorthiness.data.PredictedCreditScore);
+            response.data.PredictedCreditScore = (int)Math.Round(predictCreditScore.data.PredictedCreditScore);
+            response.data.DebtToIncomeRatio = (int)debtToIncome;
             //USE SWITCH EXPRESSION TO DETERMINE RISK LEVEL
-            response.data.CreditRating = (int)assessCreditWorthiness.data.PredictedCreditScore 
+            response.data.CreditRating = (int)predictCreditScore.data.PredictedCreditScore
                 switch
-                    {
-                        >= 720 => "A",
-                        < 720 and >= 690 => "B",
-                        < 690 and >= 630 => "C",
-                        < 630 and >= 300 => "D",
-                        _ => "F"
-                    };
+            {
+                >= 720 => "A",
+                < 720 and >= 690 => "B",
+                < 690 and >= 630 => "C",
+                < 630 and >= 300 => "D",
+                _ => "F"
+            };
+            response.message = "Credit risk assessed successfully";
+            response.status = predictCreditScore.status;
 
-            response.message = assessCreditWorthiness.message;
-            response.status = assessCreditWorthiness.status;
+            //MAPS PROPERTIES ACCORDINGLY TO ASSESSEDCUSTOMER MODEL TO SAVE ON THE ASSESSED CUSTOMER TABLE
+            var assessedCustomer = new AssessedCustomer()
+            {
+                AssessedDate = DateTime.UtcNow,
+                Name = customerCreditHistory.Name,
+                BVN = customerCreditHistory.BVN,
+                Age = customerCreditHistory.Age,
+                Occupation = customerCreditHistory.Occupation,
+                LoanAmount = customerCreditHistory.LoanAmount,
+                AnnualIncome = customerCreditHistory.AnnualIncome,
+                MonthlyNetSalary = customerCreditHistory.MonthlyNetSalary,
+                InterestRate = customerCreditHistory.InterestRate,
+                NumberOfLoan = customerCreditHistory.NumberOfLoan,
+                NumberOfDelayedPayment = customerCreditHistory.NumberOfDelayedPayment,
+                OutstandingDebt = customerCreditHistory.OutstandingDebt,
+                DebtToIncomeRatio = (float)debtToIncome / 100,
+                MonthsOfCreditHistory = customerCreditHistory.MonthsOfCreditHistory,
+                PaymentOfMinimumAmount = customerCreditHistory.PaymentOfMinimumAmount,
+                MonthlyInstallmentAmount = customerCreditHistory.MonthlyInstallmentAmount,
+                AmountInvestedMonthly = customerCreditHistory.AmountInvestedMonthly,
+                MonthlyBalance = customerCreditHistory.MonthlyBalance,
+                PredictedCreditScore = response.data.PredictedCreditScore,
+                CreditRating = response.data.CreditRating
+            };
+
+            //SAVES ASSESSED CREDIT HISTORY ON THE DB
+            SaveAssessedCreditHistory(assessedCustomer);
+
             return response;
         }
         catch (Exception ex)
@@ -89,6 +127,19 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             response.message = ex.Message;
             return response;
         }
+    }
+
+    //THIS METHOD PERSISTS ASSESSED CUSTOMERS ON THE ASSESSCUSTOMERS TABLE
+    private void SaveAssessedCreditHistory(AssessedCustomer request)
+    {
+        _crasDbContext.AssessedCustomers.Add(request);
+        _crasDbContext.SaveChanges();
+    }
+
+    //THIS METHOD FETCHES CUSTOMER'S CREDIT HISTORY USING THE BVN AS THE QUERY PARAMETER
+    private async Task<Customer> GetCreditHistory(string bvn)
+    {
+        return await _crasDbContext.Customers.FirstOrDefaultAsync(c => c.BVN == bvn);
     }
 
     //THIS METHOD READS THE FIRST 100 ROWS ON TEH CSV FILE AND PERSISTS DATA ACCORDINGLY ON THE CUSTOMERS TABLE ON THE SQL DB

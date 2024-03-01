@@ -126,7 +126,7 @@ public class CRASPredictService : ICRAS_Service
             return response;
         }
         response.status = Constants.SUCCESS;
-        response.message = $"Credit history predicted successfully";
+        response.message = $"Credit score predicted successfully";
         return response;
     }
 }
