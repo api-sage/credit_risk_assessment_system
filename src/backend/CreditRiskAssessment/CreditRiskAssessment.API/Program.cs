@@ -1,8 +1,10 @@
+using CreditRiskAssessment.AppDbContext;
 using CreditRiskAssessment.Infrastructure;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Services;
 using CreditRiskAssessment.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Events;
@@ -15,6 +17,10 @@ namespace CreditRiskAssessment.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //Add CRASDbContext to the container using Azure Sql server
+            builder.Services.AddDbContext<CRASDbContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("crasServer"))
+                );
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

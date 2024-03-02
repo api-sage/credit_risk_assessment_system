@@ -11,5 +11,5 @@ namespace CreditRiskAssessment.ML.Interfaces;
 public interface ICRAS_Service
 {
     Task<ResponseResult<string>> TrainModelAsync();
-    Task<ResponseResult<LoanApplicantMLResponse>> AssessCreditWorthiness(LoanApplicantRequest request);
+    Task<ResponseResult<LoanApplicantMLResponse>> CalculateCreditScore(LoanApplicantRequest request);
 }

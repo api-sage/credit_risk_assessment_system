@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CreditRiskAssessment.Models.Response;
 
-public class CheckCreditWorthinessResponse
+public class AssessRiskLevelResponse
 {
+    public int DebtToIncomeRatio { get; set; }
+    public int PredictedCreditScore { get; set; }
+    public string CreditRating { get; set; }
 }
