@@ -1,6 +1,123 @@
-<div class="mt-10 mx-8" id="wrapper">
-   <svg id="meter" viewBox="0 0 200 200">
-     <circle id="bad" r="30" cx="30%" cy="30%" stroke="#FDE47F"
-     stroke-width="5" fill="none"></circle>
-   </svg>
-</div>
+<header class="navbar">
+  <nav class="nav flex p-4 mx-10 items-center flex-col justify-center sm:justify-between sm:flex-row">
+      <div class="left font-['Poppins']">
+          <a class="font-extrabold text-green-700 text-xl mr-3 sm:text-4xl sm:mr-24 " routerLink="">CRAS</a>
+          <a class="text-center text-neutral-900 text-[32px] font-semibold font-['Poppins'] leading-[43.37px] sm:ml-24">Dashboard</a>
+      </div>
+      <div class="right">
+          <button class="bg-green-800 rounded-[20px] text-white text-xl font-medium px-5 py-2 ">Get Started</button>
+      </div>
+  </nav>
+</header>
+
+
+
+ <section class="text-stone-900 font-['Poppins']  ">
+  <div class="w-full  flex sm:flex-row">
+      <div class="left-level-section w-[75%]">
+          <p class="text-black text-base font-normal leading-snug sm:ml-14 sm:mt-4">Home / Dashboard</p>
+          <div class="items-start inline-flex justify-start sm:ml-12 sm:mt-6">
+
+            <div class=" p-2.5 bg-blue-700 bg-opacity-60 rounded-2xl shadow flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[31rem] sm:h-48">
+                <div class="text-stone-50 text-2xl font-semibold leading-8">Credit Score:</div> 
+                <div class="text-stone-50 text-base font-normal leading-snug"></div>
+
+            </div>
+
+            <div class=" p-2.5 bg-red-600 bg-opacity-60 rounded-2xl shadow flex-col justify-start items-start inline-flex sm:w-[31rem] sm:h-48">
+                <div class="text-stone-50 text-2xl font-semibold font-['Poppins'] leading-8">Credit Rating:</div>
+                <div class="text-stone-50 text-base font-normal leading-snug"></div>
+            </div>
+          </div>
+
+          <div class="flex-col bg-blue-700 shadow-md rounded-2xl sm:ml-12 sm:mt-16 sm:w-[63rem]">
+            <div class="flex justify-between mx-5 pt-6 text-white">
+              <p class="text-2xl font-semibold">Credit Score</p>
+              <p class="text-2xl font-semibold">Your financial health</p>
+            </div>
+            
+              <!-- Card content -->
+              <div class="p-11">
+                <div class="pt-4 pb-12">
+                <svg width="100%" height="180px" viewBox="0 0 385 177" version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                 <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                     <g id="Artboard" transform="translate(-15.000000, -224.000000)">
+                         <g id="Group" transform="translate(15.000000, 220.000000)">
+                             <g id="guage">
+                                <path d="M84.8041871,178.856781 L84.8041871,179.169281 L25,179.169281 L25,178.669281 C25,119.519295 57.1931907,67.8894771 105.011512,40.3501901 L135,92.2989954 C105.009619,109.483749 84.8041871,141.810321 84.8041871,178.856781 Z" id="red" fill="url(#redGradient)"></path>
+                                <path d="M235.050803,92.4864742 C205.21439,75.1028089 167.169843,73.7652453 135.133157,92.2884751 L134.862916,92.4447251 L105,40.6455806 L105.432385,40.3955806 C156.58355,10.8205878 217.307001,12.8896752 265,40.5376689 L235.050803,92.4864742 L235.050803,92.4864742 Z" id="yellow" fill="url(#yellowGradient)"></path>
+                                <path d="M235,92.2989954 L264.988488,40.3501901 C312.806809,67.8894771 345,119.519295 345,178.669281 L345,179.169281 L285.195813,179.169281 L285.195813,178.856781 C285.195813,141.810321 264.990381,109.483749 235,92.2989954 L235,92.2989954 Z" id="green" fill="url(#greenGradient)"></path>
+                                
+                                <linearGradient id="redGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                  <stop offset="0%" style="stop-color:#9e1c17;" />
+                                  <stop offset="100%" style="stop-color:#eb4b27;" />
+                                </linearGradient>
+                                <linearGradient id="yellowGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                  <stop offset="0%" style="stop-color:#FFDD33;" />
+                                  <stop offset="100%" style="stop-color:#e5a524;" />
+                                </linearGradient>
+                                <linearGradient id="greenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                  <stop offset="0%" style="stop-color:#7FFF33;" />
+                                  <stop offset="100%" style="stop-color:#008542;" />
+                                </linearGradient>
+                                 <text id="900"   fill="#f2f0f0">
+                                     <tspan x="350" y="180">900</tspan>
+                                 </text>
+                                 <text id="600" fill="#f2f0f0">
+                                     <tspan x="171" y="16">600</tspan>
+                                 </text>
+                                 <text id="300" fill="#f2f0f0">
+                                     <tspan x="-8" y="178"> 300 </tspan>
+                                 </text>
+                             </g>
+                             <g id="needle" transform="translate(175.000000, 19.000000)">
+                                 <polygon id="Triangle" fill="#3C3C3B" points="10 0 15 162 5 162"></polygon>
+                             </g>
+                         </g>
+                     </g>
+                 </g>
+             </svg>
+                </div>
+                <div class="flex">
+                  <!-- Text field -->
+                  <input type="text" class=" px-4 py-2 border rounded-md mr-2" placeholder="Enter BVN">
+                  <!-- Buttons -->
+                  <div>
+                    <button class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">Check Score</button>
+                  </div>
+                  <div>
+                    <button class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">View History</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+      </div>
+
+               <div class="right-level-section w-[25%]  h-screen ">
+                  <div class="w-[18rem]  px-4 py-2 rounded-2xl border-4 border-green-900 flex-col justify-center items-center my-2.5 inline-flex mt-0 ml-5 gap-2.5">
+                      <div class="text-black text-base font-medium  leading-snug">Credit Rating Chart</div>
+                          <div class="w-[16rem] h-[9.5rem] p-5 bg-green-900 rounded-[20px] shadow flex-col justify-center items-center  flex ">
+                              <div class="text-stone-50 text-5xl font-semibold  leading-[65.05px]">A</div>
+                              <div class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]">This shows a perfect credit score</div>
+                          </div>
+                      
+                          <div class="w-[16rem] h-[9.5rem] p-5 bg-green-500 rounded-[20px] shadow flex-col justify-center items-center  flex">
+                              <div class="text-stone-50 text-5xl font-semibold  leading-[65.05px]">B</div>
+                              <div class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]">This shows a perfect credit score</div>
+                          </div>
+                          <div class="w-[16rem] h-[9.5rem] p-5  bg-blue-700 bg-opacity-60 rounded-[20px] shadow flex-col justify-center items-center  flex">
+                              <div class="text-stone-50 text-5xl font-semibold  leading-[65.05px]">C</div>
+                              <div class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal  leading-[18.97px]">This shows a perfect credit score</div>
+                          </div>
+                          <div class="w-[16rem] h-[9.5rem] p-5 bg-red-600  bg-opacity-60 rounded-[20px] shadow flex-col justify-center items-center  flex">
+                              <div class="text-stone-50 text-5xl font-semibold  leading-[65.05px]">F</div>
+                              <div class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]">This shows a perfect credit score</div>
+                          </div>
+                     
+                      
+                  </div>
+              </div>
+
+              
+  </div>
+</section>

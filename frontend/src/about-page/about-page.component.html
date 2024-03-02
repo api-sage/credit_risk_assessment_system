@@ -1,3 +1,5 @@
+<app-nav-bar/>
+
 <div class="sections-parent">
   <section class="upper-section">
     <div class="get-started">
@@ -5,7 +7,7 @@
         We help you know your eligibility to get a loan <br />and
         <span>BLAH BLAH BLAH</span>
       </h2>
-      <button class="start-button">Get Started</button>
+      <button><a routerLink="/create-account" routerLinkActive="active"  [routerLinkActiveOptions]="{exact: true}" class="bg-green-800 rounded-[20px] text-white text-xl font-medium px-5 py-2 ">Get Started</a></button>
     </div>
 
     <div class="reason-why-container">
@@ -66,87 +68,233 @@
 
     <div class="profile-container-parent">
       <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person1.png" alt="Person Image" />
-        </div>
-        <p class="role">Dog Trainer</p>
-        <h4 class="name">Annette Black</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-        </div>
-      </div>
-      <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person2.png" alt="Person Image" />
-        </div>
-        <p class="role">Medical Assistant</p>
-        <h4 class="name">Wade Warren</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-        </div>
-      </div>
-      <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person3.png" alt="Person Image" />
-        </div>
-        <p class="role">President of Sales</p>
-        <h4 class="name">Savannah Nguyen</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
+        <img
+          src="../assets/AboutPageAssets/Aluko_img.jpg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Back End Developer</p>
+        <h4 class="name">Folarin Aluko</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/ProminenceFM" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/aluko-folarin-a358692b0/"
+            target="_blank"
+          >
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a href="https://twitter.com/Prominence1111" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
         </div>
       </div>
       <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person4.png" alt="Person Image" />
-        </div>
-        <p class="role">Nursing Assistant</p>
-        <h4 class="name">Jenny Wilson</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-        </div>
-      </div>
-      <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person4.png" alt="Person Image" />
-        </div>
-        <p class="role">Nursing Assistant</p>
-        <h4 class="name">Jenny Wilson</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-        </div>
-      </div>
-      <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person4.png" alt="Person Image" />
-        </div>
-        <p class="role">Nursing Assistant</p>
-        <h4 class="name">Jenny Wilson</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
+        <img
+          src="../assets/AboutPageAssets/Paul_img.jpeg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Back End Developer</p>
+        <h4 class="name">Paul Afolabi</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/api-sage" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a href="linkedin.com/in/paul-afolabi-1a2238169" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a href="https://twitter.com/" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
         </div>
       </div>
       <div class="profile-container">
-        <div class="profile-image">
-          <img src="../assets/AboutPageAssets/person4.png" alt="Person Image" />
+        <img
+          src="../assets/AboutPageAssets/Oluchi_img.jpeg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Project Manager</p>
+        <h4 class="name">Oluchi Alika</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/Lucheee" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/alika-oluchi-7a9093241"
+            target="_blank"
+          >
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a href="https://x.com/alikaoluchi" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
         </div>
-        <p class="role">Nursing Assistant</p>
-        <h4 class="name">Jenny Wilson</h4>
-        <div class="ellipses-container">
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
-          <div class="ellipses"></div>
+      </div>
+      <div class="profile-container">
+        <img
+          src="../assets/AboutPageAssets/Nathanael_img.jpg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Front End Developer</p>
+        <h4 class="name">Nathanael Ehimze</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/ehimze007/">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a href="https://www.linkedin.com/in/ehimzenathanael/">
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a href="https://twitter.com/ehimze007">
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
+        </div>
+      </div>
+      <div class="profile-container">
+        <img
+          src="../assets/AboutPageAssets/Amobi_img.jpeg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Front End Developer</p>
+        <h4 class="name">Amobi Onyedikachi</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/KachyBiggs" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/amobi-michael-08a6bb169/
+          "
+            target="_blank"
+          >
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a
+            href="https://twitter.com/Console_kachy
+          "
+            target="_blank"
+          >
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
+        </div>
+      </div>
+      <div class="profile-container">
+        <img
+          src="../assets/AboutPageAssets/Idowu_img.jpeg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Front End Developer</p>
+        <h4 class="name">Idowu Adeyinka</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/idowu007" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/idowu-adeyinka-222719195/"
+            target="_blank"
+          >
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a href="https://twitter.com/Eyede007" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
+        </div>
+      </div>
+      <div class="profile-container">
+        <img
+          src="../assets/AboutPageAssets/Musty_img.jpeg"
+          alt="Person Image"
+          class="profile-image"
+        />
+        <p class="role">Front End Developer</p>
+        <h4 class="name">Mustapha Suleiman</h4>
+        <div class="social-media-container">
+          <a href="https://github.com/mastermusty" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/git-logo.png"
+              alt="git logo"
+              class="media-icons"
+            />
+          </a>
+          <a
+            href="www.linkedin.com/in/mustapha-suleiman-8805221a4"
+            target="_blank"
+          >
+            <img
+              src="../assets/AboutPageAssets/linkedin-logo.png"
+              alt="linkedIn"
+              class="media-icons"
+          /></a>
+          <a href="https://x.com/suleimamusty" target="_blank">
+            <img
+              src="../assets/AboutPageAssets/X-logo.png"
+              alt="x-logo"
+              class="media-icons"
+          /></a>
         </div>
       </div>
     </div>
