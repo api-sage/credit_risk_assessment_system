@@ -11,8 +11,6 @@ namespace CreditRiskAssessment.ML.Models;
 //EQUALLY-NAMED PROPERTIES FROM CRAS RESPONSE GETS MAPPED TO THE PROPETIES IN THIS RESPONSE CLASS
 public class LoanApplicantMLResponse
 {
-    [ColumnName("LoanStatus")]
-    public bool PredictedLoanStatus { get; set; }
-    public float Probability { get; set; }
-    public float Score { get; set; }
+    [ColumnName(@"Score")]
+    public float PredictedCreditScore { get; set; }
 }
