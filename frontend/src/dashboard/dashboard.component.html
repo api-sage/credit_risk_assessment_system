@@ -20,13 +20,15 @@
 
             <div class=" p-2.5 bg-blue-700 bg-opacity-60 rounded-2xl shadow flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[31rem] sm:h-48">
                 <div class="text-stone-50 text-2xl font-semibold leading-8">Credit Score:</div> 
-                <div class="text-stone-50 text-base font-normal leading-snug"></div>
+                <div class="text-stone-50 text-base font-normal leading-snug">{{ creditScore }}
+                </div>
 
             </div>
 
             <div class=" p-2.5 bg-red-600 bg-opacity-60 rounded-2xl shadow flex-col justify-start items-start inline-flex sm:w-[31rem] sm:h-48">
                 <div class="text-stone-50 text-2xl font-semibold font-['Poppins'] leading-8">Credit Rating:</div>
-                <div class="text-stone-50 text-base font-normal leading-snug"></div>
+                <div class="text-stone-50 text-base font-normal leading-snug">{{ creditRating }}
+                </div>
             </div>
           </div>
 
@@ -83,10 +85,10 @@
                   <input type="text" class=" px-4 py-2 border rounded-md mr-2" placeholder="Enter BVN">
                   <!-- Buttons -->
                   <div>
-                    <button class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">Check Score</button>
+                    <button (click)="checkScore()" class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">Check Score</button>
                   </div>
                   <div>
-                    <button class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">View History</button>
+                    <button (click)="viewHistory()" class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">View History</button>
                   </div>
                 </div>
               </div>
