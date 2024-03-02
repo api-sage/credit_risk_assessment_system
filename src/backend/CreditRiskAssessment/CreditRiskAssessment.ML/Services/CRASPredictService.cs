@@ -62,7 +62,7 @@ public class CRASPredictService : ICRAS_Service
             autoMLExperiment
                 .SetPipeline(pipeline)
                 .SetRegressionMetric(metric: RegressionMetric.RSquared, labelColumn: columnInferenceResult.ColumnInformation.LabelColumnName)
-                .SetTrainingTimeInSeconds(600)
+                .SetTrainingTimeInSeconds(3000)
                 .SetDataset(trainTestData);
 
             //LOGS TELEMETRY EVENTS AS MODEL IS BEING TRAINED LOOKING OUT FOR KEY-WORD "AutoMLExperiment"

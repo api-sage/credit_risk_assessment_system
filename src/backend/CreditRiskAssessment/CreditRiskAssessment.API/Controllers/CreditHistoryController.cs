@@ -2,13 +2,10 @@
 using CreditRiskAssessment.Infrastructure.Commons;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
-using CreditRiskAssessment.ML.Models;
-using CreditRiskAssessment.Models.Request;
 using CreditRiskAssessment.Models.Response;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Swashbuckle.AspNetCore.Annotations;
-using Tensorflow;
 
 namespace CreditRiskAssessment.API.Controllers
 {
@@ -30,16 +27,16 @@ namespace CreditRiskAssessment.API.Controllers
         //ONLY CALL THIS METHOD WHEN YOU WANT TO RE-TRAIN THE CRAS.zip MACHINE LEARNING MODEL
         //TO ACCESS THIS METHOD FOR THE ABOVE PURPOSE, SIMPLY UNCOMMENT IT
 
-        //[HttpGet]
-        //[SwaggerOperation(Summary = "Re-trains the Machine Learning model")]
-        //[SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(string))]
-        //[SwaggerResponse(StatusCodes.Status400BadRequest)]
-        //[SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        //public async Task<IActionResult> TrainModel()
-        //{
-        //    var response = await _crasService.TrainModelAsync();
-        //    return Ok(response);
-        //}
+        [HttpGet]
+        [SwaggerOperation(Summary = "Re-trains the Machine Learning model")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(string))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest)]
+        [SwaggerResponse(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> TrainModel()
+        {
+            var response = await _crasService.TrainModelAsync();
+            return Ok(response);
+        }
 
         [HttpPost]
         [SwaggerOperation(Summary = "Assesses the credit worthiness of loan applicants based on their credit history")]
