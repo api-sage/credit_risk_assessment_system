@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controllers\AssessCreditHistoryController.cs">
+    <Compile Update="Controllers\CreditHistoryController.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
   </ItemGroup>

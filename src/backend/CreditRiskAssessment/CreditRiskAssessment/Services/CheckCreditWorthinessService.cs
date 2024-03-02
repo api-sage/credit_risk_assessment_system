@@ -6,6 +6,7 @@ using CreditRiskAssessment.ML.Interfaces;
 using CreditRiskAssessment.ML.Models;
 using CreditRiskAssessment.Models.Response;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Serilog;
 
@@ -23,6 +24,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
         _crasDbContext = crasDbContext;
     }
 
+    //THIS METHOD ASSESSES CUSTOMER'S CREDIT HISTORY
     public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(string bvn)
     {
         //INITIALIZES RESPONSE FRAMEWORK
@@ -84,7 +86,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
                 >= 720 => "A",
                 < 720 and >= 690 => "B",
                 < 690 and >= 630 => "C",
-                < 630 and >= 300 => "D",
+                < 630 and >= 300 => "F",
                 _ => "F"
             };
             response.message = "Credit risk assessed successfully";
@@ -118,6 +120,46 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             //SAVES ASSESSED CREDIT HISTORY ON THE DB
             SaveAssessedCreditHistory(assessedCustomer);
 
+            return response;
+        }
+        catch (Exception ex)
+        {
+            _logger.Error(ex.Message);
+            response.status = Constants.ERROR;
+            response.message = ex.Message;
+            return response;
+        }
+    }
+
+    //THIS METHOD FETCHES ASSESSED CUSTOMER CREDIT HISTORY
+    public async Task<ResponseResult<List<AssessedCustomer>>> GetAssessedCreditHistory(string request)
+    {
+        var response = new ResponseResult<List<AssessedCustomer>>()
+        {
+            status = Constants.FAIL,
+            message = string.Empty,
+            data = new List<AssessedCustomer>()
+        };
+
+        if (request.Length != 11)
+        {
+            response.message = "Invalid BVN provided";
+            return response;
+        };
+        try
+        {
+            List<AssessedCustomer> assessdCustomerHistory = _crasDbContext.AssessedCustomers
+                .Where(cust => cust.BVN == request).ToList();
+
+            if(assessdCustomerHistory.IsNullOrEmpty())
+            {
+                response.status = Constants.SUCCESS;
+                response.message = "No assessed credit history available for this customer";
+                return response;
+            };
+            response.status = Constants.SUCCESS;
+            response.message = "Assessed credit history fetched successfully";
+            response.data = assessdCustomerHistory;
             return response;
         }
         catch (Exception ex)
