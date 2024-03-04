@@ -38,3 +38,11 @@
 /* Show the dropdown menu (use JavaScript to add this class to the dropdown content when the user clicks on the dropdown button) */
 .show {display:block;}
 
+#needle{
+  transform-origin: 178px 180px
+}
+
+.needle-move-to {
+  transform: rotate(calc(var(--needle-position) * 1deg));
+  transition: all 1s 500ms ease;
+}
