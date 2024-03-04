@@ -27,6 +27,8 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     //THIS METHOD ASSESSES CUSTOMER'S CREDIT HISTORY
     public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(string bvn)
     {
+        //PersistCSVDataOnCustomersTable();
+
         //INITIALIZES RESPONSE FRAMEWORK
         var response = new ResponseResult<AssessRiskLevelResponse>()
         {
@@ -43,8 +45,6 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
 
         try
         {
-            PersistCSVDataOnCustomersTable();
-
             Customer customerCreditHistory = GetCreditHistory(bvn).Result;
 
             if (customerCreditHistory == null)
