@@ -54,6 +54,8 @@ namespace CreditRiskAssessment.API
                 x.SchemaFilter<SwaggerSchemaExampleFilter>();
             });
 
+            builder.Services.AddCors();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
