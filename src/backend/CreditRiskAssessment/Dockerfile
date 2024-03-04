@@ -10,10 +10,8 @@ WORKDIR /src
 COPY ["CreditRiskAssessment.API/CreditRiskAssessment.API.csproj", "CreditRiskAssessment.API/"]
 COPY ["CreditRiskAssessment/CreditRiskAssessment.csproj", "CreditRiskAssessment/"]
 COPY ["CreditRiskAssessment.ML/CreditRiskAssessment.ML.csproj", "CreditRiskAssessment.ML/"]
-COPY ["CreditRiskAssessment.Infrastructure/CreditRiskAssessment.Infrastructure.csproj", "CreditRiskAssessment.Infrastructure/"]
 COPY ["CreditRiskAssessment.Test/CreditRiskAssessment.Test.csproj", "CreditRiskAssessment.Test/"]
 RUN dotnet restore "CreditRiskAssessment.Test/CreditRiskAssessment.Test.csproj"
-RUN dotnet restore "CreditRiskAssessment.Infrastructure/CreditRiskAssessment.Infrastructure.csproj"
 RUN dotnet restore "CreditRiskAssessment.ML/CreditRiskAssessment.ML.csproj"
 RUN dotnet restore "CreditRiskAssessment/CreditRiskAssessment.csproj"
 RUN dotnet restore "CreditRiskAssessment.API/CreditRiskAssessment.API.csproj"
@@ -30,7 +28,9 @@ COPY --from=publish /app/publish .
 
 FROM final AS deploy
 WORKDIR /app
-COPY ["./CreditRiskAssessment.API/CRAS.zip", "/app/CRAS.zip"]
-COPY ["./CreditRiskAssessment.API/Helpers/cleaned_again.csv", "/app/Helpers/cleaned_again.csv"]
+# COPY ["./CreditRiskAssessment.API/CRAS.zip", "/app/CRAS.zip"]
+# COPY ["./CreditRiskAssessment.API/CRASML.zip", "/app/CRASML.zip"]
+# COPY ["./CreditRiskAssessment.API/Helpers/cleaned_again.csv", "/app/Helpers/cleaned_again.csv"]
+# COPY ["./CreditRiskAssessment.API/Helpers/ReadFile.csv", "/app/Helpers/ReadFile.csv"]
 
 ENTRYPOINT ["dotnet", "CreditRiskAssessment.API.dll"]
