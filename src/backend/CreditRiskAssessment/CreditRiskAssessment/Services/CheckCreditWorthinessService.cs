@@ -43,6 +43,8 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
 
         try
         {
+            PersistCSVDataOnCustomersTable();
+
             Customer customerCreditHistory = GetCreditHistory(bvn).Result;
 
             if (customerCreditHistory == null)
@@ -187,8 +189,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     //THIS METHOD READS THE FIRST 100 ROWS ON TEH CSV FILE AND PERSISTS DATA ACCORDINGLY ON THE CUSTOMERS TABLE ON THE SQL DB
     private void PersistCSVDataOnCustomersTable()
     {
-        var csvDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + @"\Downloads";
-        var csvfile = Path.Combine(csvDirectory, "ReadFile.csv");
+        var csvfile = Path.Combine(Directory.GetCurrentDirectory(), "Helpers","ReadFile.csv");
 
         if (File.Exists(csvfile))
         {
