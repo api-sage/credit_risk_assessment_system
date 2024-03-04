@@ -2,6 +2,7 @@
 using CreditRiskAssessment.Infrastructure.Commons;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
+using CreditRiskAssessment.Models.Request;
 using CreditRiskAssessment.Models.Response;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -43,10 +44,10 @@ namespace CreditRiskAssessment.API.Controllers
         [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(ResponseResult<AssessRiskLevelResponse>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AssessCreditHistory(string bvn)
+        public async Task<IActionResult> AssessCreditHistory(CustomerRequest request)
         {
-            _logger.Information($"Client Request:: {JsonConvert.SerializeObject(bvn)}");
-            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(bvn);
+            _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
+            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(request.bvn);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }
@@ -56,10 +57,10 @@ namespace CreditRiskAssessment.API.Controllers
         [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(ResponseResult<List<AssessedCustomer>>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAssessedCreditHistory(string bvn)
+        public async Task<IActionResult> GetAssessedCreditHistory(CustomerRequest request)
         {
-            _logger.Information($"Client Request:: {JsonConvert.SerializeObject(bvn)}");
-            ResponseResult<List<AssessedCustomer>> response = await _checkCreditWorthinessService.GetAssessedCreditHistory(bvn);
+            _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
+            ResponseResult<List<AssessedCustomer>> response = await _checkCreditWorthinessService.GetAssessedCreditHistory(request.bvn);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }

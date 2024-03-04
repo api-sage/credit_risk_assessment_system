@@ -18,9 +18,14 @@ namespace CreditRiskAssessment.API
             var builder = WebApplication.CreateBuilder(args);
 
             //Add CRASDbContext to the container using Azure Sql server
+            //builder.Services.AddDbContext<CRASDbContext>(
+            //    options => options.UseSqlServer(builder.Configuration.GetConnectionString("crasServer"))
+            //    );
+
+            //CONFIGURES IN-MEMORY DB FPR TESTING PURPOSES
             builder.Services.AddDbContext<CRASDbContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("crasServer"))
-                );
+                options => options.UseInMemoryDatabase("CRASDB"));
+
             // Add services to the container.
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
@@ -48,6 +53,8 @@ namespace CreditRiskAssessment.API
                 x.EnableAnnotations();
                 x.SchemaFilter<SwaggerSchemaExampleFilter>();
             });
+
+            builder.Services.AddCors();
 
             var app = builder.Build();
 
