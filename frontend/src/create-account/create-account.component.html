@@ -1,0 +1,70 @@
+<div class="text-center py-6" id="regForm">
+    <div class="bg-white w-[35%] rounded-2xl py-3 mx-auto ">
+        <div class="mt-8  text-4xl text-green-700 font-semibold">
+            <h1>CRAS</h1>
+        </div>
+        <div class="mt-4 mb-2 text-xl text-green-700 font-semibold">
+            <h2>Create an account with us</h2>
+        </div>
+        <div>
+            <p>Check your credit score</p>
+        </div>
+        <div>
+        <form class="text-start  pt-6 ml-16" method="post">
+            <div>
+              <label class="block text-gray-700 text-sm mb-2" for="firstName">First Name:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="firstName" name="firstName" placeholder="first name" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="middleName" for="middleName">Middle Name:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="middleName" name="middleName" placeholder="middle name" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="lastName">Last Name:</label>
+              <input  class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="lastName" name="lastName" placeholder="last name" id="lastName" name="lastName" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="username">Username:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="username" name="username" placeholder="username" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="dateOfBirth">Date of Birth:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="date" id="dateOfBirth" name="dateOfBirth" placeholder="D.O.B" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="employmentStatus">Employment Status:</label>
+              <select class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="employmentStatus" name="employmentStatus" required>
+                <option value="">--Select--</option>
+                <option value="employed">Employed</option>
+                <option value="selfEmployed">Self-employed</option>
+                <option value="unemployed">Unemployed</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="employer">Employer:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"  type="text" id="employer" name="employer" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="mobileNumber">Mobile Number:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="tel" id="mobileNumber" name="mobileNumber" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="email">Email Address:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" name="email" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="password">Password:</label>
+              <input class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password" id="password" name="password" required>
+            </div>
+            <div>
+              <label class="block text-gray-700 text-sm mt-2" for="repeatPassword">Repeat Password:</label>
+              <input  class="shadow appearance-none border rounded w-[80%] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"type="password" id="repeatPassword" name="repeatPassword" required>
+            </div>
+            <button class="bg-green-700 border rounded w-[80%] py-1.5 text-slate-50 px-3 font-medium hover:bg-green-800 mt-8 mb-3" routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" type="submit">Create Account</button>
+                <p class="text-sm text-center pr-24">Already have an account? <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="hover:text-green-800 text-green-700 font-medium">Log in</a> </p>
+          </form>
+        </div>
+    </div>
+   
+      
+</div>

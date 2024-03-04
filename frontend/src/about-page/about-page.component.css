@@ -1,0 +1,203 @@
+/* Common Styles */
+.sections-parent {
+  font-family: "Poppins";
+}
+
+/* Header Section */
+.get-started,
+.reason-why-container,
+.lower-section {
+  padding: 60px 80px 40px;
+}
+
+.reason-why-container {
+  background: url("../assets/AboutPageAssets/currency_background.png") no-repeat,
+    #83b892;
+  width: 100%;
+  background-size: 100% 100%;
+  text-align: center;
+  color: #fff;
+}
+
+/* Reason Why Section */
+.reason-why {
+  width: 560px;
+}
+
+.reason-why h3 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.reason-why p {
+  font-size: 20px;
+  line-height: 30px;
+}
+
+/* Eligibility Section */
+.eligibility {
+  font-weight: 600;
+  font-size: 36px;
+  text-align: right;
+  line-height: 40px;
+  width: fit-content;
+}
+
+.eligibility span {
+  color: #077225;
+}
+
+/* Lower Section */
+.lower-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 80px 60px;
+}
+
+.lower-section h3 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 43px;
+  margin-bottom: 12px;
+}
+
+.lower-section p {
+  font-size: 20px;
+  line-height: 27px;
+  font-weight: 400;
+}
+
+/* Hows Section */
+.hows-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 32px 0 48px;
+  width: 100%;
+  padding: 0 12%;
+}
+
+.save-n-plan img,
+.track-n-budget img {
+  margin: 0 auto;
+  border-radius: 50%;
+  padding: 8px;
+  background-color: #cde3d3;
+}
+
+.save-n-plan,
+.track-n-budget {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #f6f6f6;
+  margin: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 5%;
+  max-width: 350px;
+  height: 350px;
+}
+
+.hows-section h4 {
+  font-weight: 600;
+  font-size: 24px;
+}
+
+/* Profile Section */
+.profile-container-parent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 32px;
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  height: 400px;
+  margin: 8px;
+  align-items: center;
+  border-radius: 25px;
+  text-align: center;
+  overflow: hidden;
+  background-color: #f4f4f4;
+}
+
+.profile-image {
+  width: 100%;
+  height: 60%;
+  margin-bottom: 10px;
+  object-fit: cover;
+  object-position: 0 0;
+}
+
+.role {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  color: #c6bdbd;
+}
+
+.name {
+  margin: 10px 0;
+  font-size: 24px;
+  color: #454545;
+}
+
+.social-media-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
+}
+
+.media-icons {
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
+}
+
+/* Hover Effect for Start Button */
+.start-button {
+  padding: 10px 20px;
+  background-color: #077225;
+  color: #fefefe;
+  margin-top: 8px;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  background-color: #4caf50;
+}
+
+/* Responsive Styling */
+@media screen and (max-width: 900px) {
+  .reason-why-container {
+    background-image: none;
+  }
+
+  .reason-why {
+    width: 90%;
+  }
+
+  .reason-why p,
+  .reason-why h3 {
+    width: 100%;
+  }
+
+  .eligibility {
+    text-align: center;
+  }
+}
