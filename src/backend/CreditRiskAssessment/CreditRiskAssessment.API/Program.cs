@@ -65,6 +65,11 @@ namespace CreditRiskAssessment.API
                 app.UseSwaggerUI();
             }
 
+            app.UseCors(x => x
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

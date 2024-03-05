@@ -21,14 +21,14 @@
 
             <div class=" p-2.5 bg-green-900 shadow-md rounded-2xl  flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[31rem] sm:h-48">
               <div> <img src="../assets/Star.png" alt="star" class="h-12 w-12 mb-6"></div>
-              <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA"><span #userScore></span></div>
+              <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA">{{creditScore}}<span></span></div>
               <div class="text-stone-50 text-2xl font-semibold ">Credit Score</div>   
 
             </div>
 
             <div class=" p-2.5 bg-orange-600 shadow-md rounded-2xl flex-col justify-start items-start inline-flex sm:w-[31rem] sm:h-48">
               <div> <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6"></div>
-              <div class="text-stone-50 text-2xl font-semibold mb-8">N/A</div>
+              <div class="text-stone-50 text-2xl font-semibold mb-8">{{creditRating}}</div>
               <div class="text-stone-50 text-2xl font-semibold ">Credit Rating</div>   
             </div>
           </div>
@@ -115,12 +115,15 @@
 
                 </div>
                 <div class="flex">
+                  <form [formGroup]="bvnForm" (submit)="onSubmit()">
+                    <input formControlName="bvn" name="bvn" type="text" class=" px-4 py-2 border rounded-md mr-2" id="textInput" placeholder="Enter BVN">
+                    <!-- Buttons -->
+                    <div>
+                      <button type="submit" class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 " id="scoreButton">Check Score</button>
+                    </div>
+            
+                  </form>
                   <!-- Text field -->
-                  <input type="number" #textInput class=" px-4 py-2 border rounded-md mr-2" id="textInput" placeholder="Enter BVN">
-                  <!-- Buttons -->
-                  <div>
-                    <button class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 " id="scoreButton">Check Score</button>
-                  </div>
                   <div>
                     <button  class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">View History</button>
                   </div>
