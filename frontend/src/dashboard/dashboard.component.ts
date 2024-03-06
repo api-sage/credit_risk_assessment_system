@@ -23,7 +23,7 @@ export class DashboardComponent {
   constructor(private assess: ApiService) {}
 
   onSubmit(): void {
-    console.log(this.bvnForm.value);
+
 
     this.assess.assessCreditHistory(this.bvnForm.value).subscribe(
       (response) => {
@@ -36,16 +36,16 @@ export class DashboardComponent {
       }
     );
 
-    // this.assess.getAssessedCreditHistory(this.bvnForm.value).subscribe(
-    //   (response)=>{
-    //     console.log(response);
+    this.assess.getAssessedCreditHistory(this.bvnForm.value).subscribe(
+      (response)=>{
+        console.log(response);
 
-    //   },
-    //   (error)=>{
-    //     console.error(error);
+      },
+      (error)=>{
+        console.error(error);
 
-    //   }
-    // )
+      }
+    )
   }
 
   // onGetAccess()
