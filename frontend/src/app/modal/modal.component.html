@@ -1,7 +1,7 @@
 
        <div>
         <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative p-4 w-full  max-h-full">
+            <div class="relative p-4 w-[80%]  max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <!-- Modal header -->
@@ -27,8 +27,33 @@
                             <p>Occupation: {{creditData[0].occupation}}</p>
                         </div>
                         
+                        <table class="min-w-full bg-white border border-gray-300">
+                            <thead class="sticky top-0 bg-blue-500 text-white text-left">
+                              <tr>
+                                <th class="py-2 px-4">Assessed date</th>
+                                <th class="py-2 px-4">Annual income</th>
+                                <th class="py-2 px-4">Loan amount</th>
+                                <th class="py-2 px-4">Debt to income ratio</th>
+                                <th class="py-2 px-4">No. of delayed payments</th>
+                                <th class="py-2 px-4">Predicted credit score</th>
+                                <th class="py-2 px-4">Credit rating</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let historyItem of creditData" class="hover:bg-gray-100 transition duration-300">
+                                <td class="py-2 px-4">{{ historyItem.assessedDate }}</td>
+                                <td class="py-2 px-4">{{ historyItem.annualIncome }}</td>
+                                <td class="py-2 px-4">{{ historyItem.loanAmount }}</td>
+                                <td class="py-2 px-4">{{ historyItem.debtToIncomeRatio }}</td>
+                                <td class="py-2 px-4">{{ historyItem.numberOfDelayedPayment }}</td>
+                                <td class="py-2 px-4">{{ historyItem.predictedCreditScore }}</td>
+                                <td class="py-2 px-4">{{ historyItem.creditRating }}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          
 
-                         <table class="min-w-full bg-white border border-gray-300 ">
+                         <!-- <table class="min-w-full bg-white border border-gray-300 ">
                             <thead class="sticky top-0 bg-white">
                               <tr class="text-left">
                                 <th>Assessed date</th>
@@ -51,7 +76,7 @@
                                 <td>{{ historyItem.creditRating }}</td>
                               </tr>
                             </tbody>
-                          </table>
+                          </table> -->
                           
 
                          
