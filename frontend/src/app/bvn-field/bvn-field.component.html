@@ -1,4 +1,3 @@
-
 <section class="bg-slate-200 text-stone-900 font-['Poppins']">
   <header class="navbar">
     <nav
@@ -19,7 +18,7 @@
     </nav>
   </header>
   <div class="w-[60%] mx-auto my-12 p-12 bg-white border rounded-lg shadow">
-    <form [formGroup]="bvnForm" (submit)="onSubmit()">
+    <form>
       <div class="mb-4">
         <label for="inputField" class="block text-sm font-medium text-gray-600"
           >Enter Bvn</label
@@ -37,30 +36,20 @@
       <div class="flex space-x-4">
         <button
           type="submit"
-          class="w-1/3 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          class="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
         >
-          Check Score
+          Submit
         </button>
 
         <button
           type="button"
-          class="w-1/3 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring focus:border-blue-300"
+          class="w-1/2 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring focus:border-blue-300"
         >
-          Check Risk Profile
-        </button>
-
-        <button
-          type="button"
-          (click)="openModal()"
-          class="w-1/3 px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400 focus:outline-none focus:ring focus:border-blue-300"
-        >
-          View History
+          Reset
         </button>
       </div>
     </form>
   </div>
-  <app-modal [creditData]="fetchedCreditHistory"></app-modal>
-
   <div class="">
     <div class="flex justify-around">
       <div
@@ -70,7 +59,7 @@
           <img src="../assets/Star.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA">
-          {{creditScore}}
+          <!--{{creditScore}}-->
         </div>
         <div class="text-stone-50 text-2xl font-semibold">Credit Score</div>
       </div>
@@ -82,9 +71,9 @@
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div class="text-stone-50 text-2xl font-semibold mb-8">
-          {{creditRating}}
+          <!--{{creditRating}}-->
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
+        <div class="text-stone-50 text-2xl font-semibold">Credit Rating</div>
       </div>
     </div>
 

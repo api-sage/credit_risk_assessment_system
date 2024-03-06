@@ -4,6 +4,7 @@ import { CreateAccountComponent } from '../create-account/create-account.compone
 import { LoginComponent } from '../login-page/login-page.component';
 import { aboutPageComponent } from '../about-page/about-page.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { BvnFieldComponent } from './bvn-field/bvn-field.component';
 
  export const routes: Routes = [
     { path: '', component: landingPageComponent },
@@ -11,5 +12,6 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     { path: 'login', component: LoginComponent },
     { path: 'about-page', component: aboutPageComponent },
     { path: 'dashboard', component: DashboardComponent, },
+    { path: 'bvn-field', component: BvnFieldComponent,}
 ];
 
