@@ -14,7 +14,7 @@ export class ApiService {
 
   // Rename the method to match the endpoint name
   assessCreditHistory(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/AssessCreditHistory`, data);
+    return this.http.post(`${this.apiUrl}/CreditHistory`, data);
   }
   
 
