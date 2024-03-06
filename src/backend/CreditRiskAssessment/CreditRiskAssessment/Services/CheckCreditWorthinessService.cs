@@ -36,7 +36,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
         {
             status = Constants.FAIL,
             message = string.Empty,
-            data = new AssessRiskLevelResponse()
+            data = null
         };
 
         if (bvn.Length != 11)
@@ -142,7 +142,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
         {
             status = Constants.FAIL,
             message = string.Empty,
-            data = new List<AssessedCustomerDTO>()
+            data = null
         };
 
         if (request.Length != 11)
