@@ -21,7 +21,7 @@
 
             <div class=" p-2.5 bg-green-700 shadow-md rounded-2xl  flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[31rem] sm:h-48">
               <div> <img src="../assets/Star.png" alt="star" class="h-12 w-12 mb-6"></div>
-              <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA">{{creditScore}}<span></span></div>
+              <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA">{{creditScore}}</div>
               <div class="text-stone-50 text-2xl font-semibold ">Credit Score</div>   
 
             </div>
@@ -125,7 +125,7 @@
                   </form>
                   <!-- Text field -->
                   <div>
-                    <button  class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">View History</button>
+                    <button (click)="openModal()"  class="px-4 py-2 bg-slate-100 text-black rounded-md mr-2 ">View History</button>
                   </div>
                 </div>
               </div>
@@ -152,8 +152,13 @@
                                 <div class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]">This shows a perfect credit score</div>
                             </div>
                        
-                        
+                        <app-modal [creditData]="fetchedCreditHistory"></app-modal>
                     </div>
                 </div>
     </div>
+
+   
+            
+
+    
 </section>
