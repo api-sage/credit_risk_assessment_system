@@ -1,7 +1,7 @@
 
        <div>
         <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-            <div class="relative p-4 w-[80%]  max-h-full">
+            <div class="relative p-4 w-[90%]  max-h-full">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <!-- Modal header -->
@@ -21,12 +21,12 @@
                         
                         <body class="bg-gray-100 p-8">
                         <div>
-                            <p>Name: {{creditData[0].name}} </p>
-                            <p>Age: {{creditData[0].age}}</p>
-                            <p>Bvn: {{creditData[0].bvn}}</p>
-                            <p>Occupation: {{creditData[0].occupation}}</p>
-                            <p>Risk Level: {{creditData[0].creditRating}}</p>
-                            <p>Number of credit taken: {{creditData.length}}</p>
+                            <p><b>Name</b>: {{creditData[0].name}} </p>
+                            <p><b>Age</b>: {{creditData[0].age}}</p>
+                            <p><b>Bvn</b>: {{creditData[0].bvn}}</p>
+                            <p><b>Occupation</b>: {{creditData[0].occupation}}</p>
+                            <p><b>Risk Level</b>: {{creditData[0].creditRating}}</p>
+                            <p><b>Number of credits taken</b>: {{creditData.length}}</p>
                         </div>
                       <br>
                       <p class="text-center font-bold mb-2">{{creditData[0].name}}'s Credit History</p>

@@ -87,10 +87,10 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
             response.data.CreditRating = (int)predictCreditScore.data.PredictedCreditScore
                 switch
             {
-                >= 720 => "A",
-                < 720 and >= 690 => "B",
-                < 690 and >= 630 => "C",
-                < 630 and >= 300 => "F",
+                >= 720 => "A - Low Risk",
+                < 720 and >= 690 => "B - Moderate Risk",
+                < 690 and >= 630 => "C - Fair Risk",
+                < 630 and >= 300 => "F - High Risk",
                 _ => "F"
             };
             response.message = "Credit risk assessed successfully";
