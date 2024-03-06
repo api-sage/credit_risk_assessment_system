@@ -45,10 +45,10 @@ namespace CreditRiskAssessment.API.Controllers
         [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(ResponseResult<AssessRiskLevelResponse>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> AssessCreditHistory(CustomerRequest request)
+        public async Task<IActionResult> CheckCreditScore(CustomerRequest request)
         {
             _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
-            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.AssessRiskLevel(request.bvn);
+            ResponseResult<AssessRiskLevelResponse> response = await _checkCreditWorthinessService.CheckCreditScore(request.bvn);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }
@@ -58,10 +58,10 @@ namespace CreditRiskAssessment.API.Controllers
         [SwaggerResponse(StatusCodes.Status200OK, "Request successful", typeof(ResponseResult<List<AssessedCustomer>>))]
         [SwaggerResponse(StatusCodes.Status400BadRequest)]
         [SwaggerResponse(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAssessedCreditHistory(CustomerRequest request)
+        public async Task<IActionResult> CheckCreditHistory(CustomerRequest request)
         {
             _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
-            ResponseResult<List<AssessedCustomerDTO>> response = await _checkCreditWorthinessService.GetAssessedCreditHistory(request.bvn);
+            ResponseResult<List<AssessedCustomerDTO>> response = await _checkCreditWorthinessService.CheckCreditHistory(request.bvn);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }

@@ -20,6 +20,6 @@ export class ApiService {
 
   // Rename the method to match the endpoint name
   getAssessedCreditHistory(bvn: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/GetAssessedCreditHistory`, bvn);
+    return this.http.post(`${this.apiUrl}/CheckCreditHistory`, bvn);
   }
 }

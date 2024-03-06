@@ -27,7 +27,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     }
 
     //THIS METHOD ASSESSES CUSTOMER'S CREDIT HISTORY
-    public async Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(string bvn)
+    public async Task<ResponseResult<AssessRiskLevelResponse>> CheckCreditScore(string bvn)
     {
         //PersistCSVDataOnCustomersTable();
 
@@ -36,7 +36,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
         {
             status = Constants.FAIL,
             message = string.Empty,
-            data = new AssessRiskLevelResponse()
+            data = null
         };
 
         if (bvn.Length != 11)
@@ -136,13 +136,13 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     }
 
     //THIS METHOD FETCHES ASSESSED CUSTOMER CREDIT HISTORY
-    public async Task<ResponseResult<List<AssessedCustomerDTO>>> GetAssessedCreditHistory(string request)
+    public async Task<ResponseResult<List<AssessedCustomerDTO>>> CheckCreditHistory(string request)
     {
         var response = new ResponseResult<List<AssessedCustomerDTO>>()
         {
             status = Constants.FAIL,
             message = string.Empty,
-            data = new List<AssessedCustomerDTO>()
+            data = null
         };
 
         if (request.Length != 11)

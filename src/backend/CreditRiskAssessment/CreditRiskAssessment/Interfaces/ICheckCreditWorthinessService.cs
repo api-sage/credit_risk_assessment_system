@@ -14,6 +14,6 @@ namespace CreditRiskAssessment.Interfaces;
 
 public interface ICheckCreditWorthinessService
 {
-    Task<ResponseResult<AssessRiskLevelResponse>> AssessRiskLevel(string request);
-    Task<ResponseResult<List<AssessedCustomerDTO>>> GetAssessedCreditHistory(string request);
+    Task<ResponseResult<AssessRiskLevelResponse>> CheckCreditScore(string request);
+    Task<ResponseResult<List<AssessedCustomerDTO>>> CheckCreditHistory(string request);
 }
