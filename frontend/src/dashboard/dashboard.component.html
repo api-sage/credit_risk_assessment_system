@@ -56,7 +56,7 @@
   <div class="">
     <div class="flex justify-around">
       <div
-        class="p-2.5 bg-green-700 shadow-md rounded-2xl flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[26rem] sm:h-48"
+        class="bg-slate-400 border-double border-4 p-2.5 shadow-md rounded-2xl flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[26rem] sm:h-48 creditScoreDiv"
       >
         <div>
           <img src="../assets/Star.png" alt="star" class="h-12 w-12 mb-6" />
@@ -68,87 +68,66 @@
       </div>
 
       @if (isRed) {
-        <div
+      <div
         class="p-2.5 bg-red-700 shadow-md text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
-      
-        >
+      >
         <div>
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div
-          class="text-black text-2xl font-semibold mb-8"
-         
-        >
+        <div class="text-black text-2xl font-semibold mb-8">
           {{ creditRating }}
         </div>
         <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isBlue) {
-        <div
+      <div
         class="p-2.5 shadow-md bg-blue-600 text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
-      
-        >
+      >
         <div>
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div
-          class="text-black text-2xl font-semibold mb-8"
-         
-        >
+        <div class="text-black text-2xl font-semibold mb-8">
           {{ creditRating }}
         </div>
         <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isYellow) {
-        <div
+      <div
         class="p-2.5 bg-yellow-600 shadow-md text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
-      
-        >
+      >
         <div>
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div
-          class="text-black text-2xl font-semibold mb-8"
-         
-        >
+        <div class="text-black text-2xl font-semibold mb-8">
           {{ creditRating }}
         </div>
         <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isGreen) {
-        <div
+      <div
         class="p-2.5 shadow-md bg-green-600 text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
-      
-        >
+      >
         <div>
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div
-          class="text-black text-2xl font-semibold mb-8"
-         
-        >
+        <div class="text-black text-2xl font-semibold mb-8">
           {{ creditRating }}
         </div>
         <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else {
-        <div
-        class="p-2.5 shadow-md bg-slate-50 text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
-      
-        >
-        <div>
+      <div
+        class="bg-slate-400 border-double border-4 p-2.5 shadow-md text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
+      >
+        <div class="p-2 items-center">
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div
-          class="text-black text-2xl font-semibold mb-8"
-         
-        >
+        <div class="text-black text-2xl font-semibold mb-8">
           {{ creditRating }}
         </div>
         <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }
-     
     </div>
 
     <div>

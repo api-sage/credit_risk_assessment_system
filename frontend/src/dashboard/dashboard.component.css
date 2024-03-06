@@ -1,8 +1,8 @@
 #triangle {
-    transform-origin:center bottom;
-    transform-box:fill-box;
-  }
-  
+  transform-origin: center bottom;
+  transform-box: fill-box;
+}
+
 /* Dropdown container */
 .dropdown {
   position: relative;
@@ -15,7 +15,7 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
 
@@ -33,16 +33,21 @@
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1;}
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
 
 /* Show the dropdown menu (use JavaScript to add this class to the dropdown content when the user clicks on the dropdown button) */
-.show {display:block;}
+.show {
+  display: block;
+}
 
-#needle{
-  transform-origin: 178px 180px
+#needle {
+  transform-origin: 178px 180px;
 }
 
 .needle-move-to {
   transform: rotate(calc(var(--needle-position) * 1deg));
   transition: all 1s 500ms ease;
 }
+
