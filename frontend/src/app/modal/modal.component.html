@@ -7,7 +7,7 @@
                     <!-- Modal header -->
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                            Accessed Customer Credit History
+                            {{creditData[0].name}}'s Risk Profile
                         </h3>
                         <button type="button" (click)="closeModal()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" >
                             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -25,8 +25,11 @@
                             <p>Age: {{creditData[0].age}}</p>
                             <p>Bvn: {{creditData[0].bvn}}</p>
                             <p>Occupation: {{creditData[0].occupation}}</p>
+                            <p>Risk Level: {{creditData[0].creditRating}}</p>
+                            <p>Number of credit taken: {{creditData.length}}</p>
                         </div>
-                        
+                      <br>
+                      <p class="text-center font-bold mb-2">{{creditData[0].name}}'s Credit History</p>
                         <table class="min-w-full bg-white border border-gray-300">
                             <thead class="sticky top-0 bg-blue-500 text-white text-left">
                               <tr>
@@ -35,7 +38,7 @@
                                 <th class="py-2 px-4">Loan amount</th>
                                 <th class="py-2 px-4">Debt to income ratio</th>
                                 <th class="py-2 px-4">No. of delayed payments</th>
-                                <th class="py-2 px-4">Predicted credit score</th>
+                                <th class="py-2 px-4">Credit score</th>
                                 <th class="py-2 px-4">Credit rating</th>
                               </tr>
                             </thead>
