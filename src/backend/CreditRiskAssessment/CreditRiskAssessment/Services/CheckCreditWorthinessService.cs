@@ -80,7 +80,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
 
             //RESPONSE FROM THE CREDIT ASSESSMENT ENGINE
             var predictCreditScore = _crasService.CalculateCreditScore(modelRequest).Result;
-
+            response.data = new AssessRiskLevelResponse();
             response.data.PredictedCreditScore = (int)Math.Round(predictCreditScore.data.PredictedCreditScore);
             response.data.DebtToIncomeRatio = (int)debtToIncome;
             //USE SWITCH EXPRESSION TO DETERMINE RISK LEVEL
@@ -192,7 +192,7 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
                 };
                 assessedCustomerDTO.Add(assessedCust);
             }
-
+            response.data = new List<AssessedCustomerDTO>();
             response.status = Constants.SUCCESS;
             response.message = "Assessed credit history fetched successfully";
             response.data = assessedCustomerDTO;
