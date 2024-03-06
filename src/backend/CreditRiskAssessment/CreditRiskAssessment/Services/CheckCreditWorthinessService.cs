@@ -1,4 +1,5 @@
 ﻿using CreditRiskAssessment.AppDbContext;
+using CreditRiskAssessment.DTO;
 using CreditRiskAssessment.Entities;
 using CreditRiskAssessment.Infrastructure.Commons;
 using CreditRiskAssessment.Interfaces;
@@ -9,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Serilog;
+using Tensorflow;
 
 namespace CreditRiskAssessment.Services;
 
@@ -134,13 +136,13 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
     }
 
     //THIS METHOD FETCHES ASSESSED CUSTOMER CREDIT HISTORY
-    public async Task<ResponseResult<List<AssessedCustomer>>> GetAssessedCreditHistory(string request)
+    public async Task<ResponseResult<List<AssessedCustomerDTO>>> GetAssessedCreditHistory(string request)
     {
-        var response = new ResponseResult<List<AssessedCustomer>>()
+        var response = new ResponseResult<List<AssessedCustomerDTO>>()
         {
             status = Constants.FAIL,
             message = string.Empty,
-            data = new List<AssessedCustomer>()
+            data = new List<AssessedCustomerDTO>()
         };
 
         if (request.Length != 11)
@@ -159,9 +161,41 @@ public class CheckCreditWorthinessService : ICheckCreditWorthinessService
                 response.message = "No assessed credit history available for this customer";
                 return response;
             };
+
+            var assessedCustomerDTO = new List<AssessedCustomerDTO>();
+
+            foreach (var customer in assessdCustomerHistory)
+            {
+                var assessedCust = new AssessedCustomerDTO
+                {
+                    SN = customer.SN,
+                    AssessedDate = customer.AssessedDate.ToString("dd-MMM-yyyy"),
+                    Name = customer.Name,
+                    BVN = customer.BVN,
+                    Age = customer.Age,
+                    Occupation = customer.Occupation,
+                    LoanAmount = customer.LoanAmount,
+                    AnnualIncome = customer.AnnualIncome,
+                    MonthlyNetSalary = customer.MonthlyNetSalary,
+                    InterestRate = customer.InterestRate,
+                    NumberOfLoan = customer.NumberOfLoan,
+                    NumberOfDelayedPayment = customer.NumberOfDelayedPayment,
+                    OutstandingDebt = customer.OutstandingDebt,
+                    DebtToIncomeRatio = customer.DebtToIncomeRatio,
+                    MonthsOfCreditHistory = customer.MonthsOfCreditHistory,
+                    PaymentOfMinimumAmount = customer.PaymentOfMinimumAmount,
+                    MonthlyInstallmentAmount = customer.MonthlyInstallmentAmount,
+                    AmountInvestedMonthly = customer.AmountInvestedMonthly,
+                    MonthlyBalance = customer.MonthlyBalance,
+                    PredictedCreditScore = customer.PredictedCreditScore,
+                    CreditRating = customer.CreditRating,
+                };
+                assessedCustomerDTO.Add(assessedCust);
+            }
+
             response.status = Constants.SUCCESS;
             response.message = "Assessed credit history fetched successfully";
-            response.data = assessdCustomerHistory;
+            response.data = assessedCustomerDTO;
             return response;
         }
         catch (Exception ex)

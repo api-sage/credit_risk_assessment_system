@@ -1,4 +1,5 @@
-﻿using CreditRiskAssessment.Entities;
+﻿using CreditRiskAssessment.DTO;
+using CreditRiskAssessment.Entities;
 using CreditRiskAssessment.Infrastructure.Commons;
 using CreditRiskAssessment.Interfaces;
 using CreditRiskAssessment.ML.Interfaces;
@@ -60,7 +61,7 @@ namespace CreditRiskAssessment.API.Controllers
         public async Task<IActionResult> GetAssessedCreditHistory(CustomerRequest request)
         {
             _logger.Information($"Client Request:: {JsonConvert.SerializeObject(request)}");
-            ResponseResult<List<AssessedCustomer>> response = await _checkCreditWorthinessService.GetAssessedCreditHistory(request.bvn);
+            ResponseResult<List<AssessedCustomerDTO>> response = await _checkCreditWorthinessService.GetAssessedCreditHistory(request.bvn);
             _logger.Information($"API Response:: {JsonConvert.SerializeObject(response)}");
             return Ok(response);
         }
