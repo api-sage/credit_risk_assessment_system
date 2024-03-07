@@ -3,10 +3,10 @@
     <nav
       class="nav flex p-4 mx-10 items-center flex-col justify-center sm:justify-between sm:flex-row"
     >
-      <div class="left font-['Poppins']">
+      <div class="left">
         <a
           class="font-extrabold text-green-700 text-xl mr-3 sm:text-4xl sm:mr-24"
-          routerLink="/bvn-field"
+          routerLink=""
           >CRAS</a
         >
         <a
@@ -14,7 +14,17 @@
           >Dashboard</a
         >
       </div>
-      <div class="right"></div>
+      <div class="right">
+        <button>
+          <a
+            routerLink="/login"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="bg-green-800 rounded-[20px] text-white text-xl font-medium px-5 py-2"
+            >Log Out</a
+          >
+        </button>
+      </div>
     </nav>
   </header>
   <div class="w-[60%] mx-auto my-12 p-12 bg-white border rounded-lg shadow">
@@ -56,15 +66,15 @@
   <div class="">
     <div class="flex justify-around">
       <div
-        class="p-2.5 bg-green-700 shadow-md rounded-2xl flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[26rem] sm:h-48"
+        class="p-2.5 bg-slate-50 shadow-md  rounded-2xl flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[26rem] sm:h-48"
       >
         <div>
           <img src="../assets/Star.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA">
+        <div class="text-green-700 text-2xl font-semibold mb-8" id="cardA">
           {{ creditScore }}
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Credit Score</div>
+        <div class="text-green-700 text-2xl font-semibold">Credit Score</div>
       </div>
 
       @if (isRed) {
@@ -81,7 +91,7 @@
         >
           {{ creditRating }}
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
+        <div class="text-black text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isBlue) {
         <div
@@ -97,11 +107,11 @@
         >
           {{ creditRating }}
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
+        <div class="text-black text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isYellow) {
         <div
-        class="p-2.5 bg-yellow-600 shadow-md text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
+        class="p-2.5 bg-green-500 shadow-md text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
       
         >
         <div>
@@ -113,11 +123,11 @@
         >
           {{ creditRating }}
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
+        <div class="text-black text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isGreen) {
         <div
-        class="p-2.5 shadow-md bg-green-600 text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
+        class="p-2.5 shadow-md bg-green-900 text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
       
         >
         <div>
@@ -129,7 +139,7 @@
         >
           {{ creditRating }}
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
+        <div class="text-black text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else {
         <div
@@ -145,7 +155,7 @@
         >
           {{ creditRating }}
         </div>
-        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
+        <div class="text-black text-2xl font-semibold">Risk Profile</div>
       </div>
       }
      
@@ -156,7 +166,7 @@
         <div
           class="text-black text-base font-medium leading-snug text-center my-4"
         >
-          Credit Rating Chart
+          Risk Profile Chart
         </div>
         <div class="px-4 py-2 flex justify-center items-center ml-5 gap-2.5">
           <div
@@ -168,7 +178,7 @@
             <div
               class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]"
             >
-              This shows a perfect credit score
+              This shows a low risk profile
             </div>
           </div>
 
@@ -181,11 +191,11 @@
             <div
               class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]"
             >
-              This shows a perfect credit score
+              This shows a moderate risk profile
             </div>
           </div>
           <div
-            class="w-[16rem] h-[9.5rem] p-5 bg-blue-700 bg-opacity-60 rounded-[20px] shadow flex-col justify-center items-center flex"
+            class="w-[16rem] h-[9.5rem] p-5 bg-blue-700  rounded-[20px] shadow flex-col justify-center items-center flex"
           >
             <div class="text-stone-50 text-5xl font-semibold leading-[65.05px]">
               C
@@ -193,11 +203,11 @@
             <div
               class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]"
             >
-              This shows a perfect credit score
+              This shows a fair risk profile
             </div>
           </div>
           <div
-            class="w-[16rem] h-[9.5rem] p-5 bg-red-600 bg-opacity-60 rounded-[20px] shadow flex-col justify-center items-center flex"
+            class="w-[16rem] h-[9.5rem] p-5 bg-red-600  rounded-[20px] shadow flex-col justify-center items-center flex"
           >
             <div class="text-stone-50 text-5xl font-semibold leading-[65.05px]">
               F
@@ -205,7 +215,7 @@
             <div
               class="w-[213px] h-[47px] text-center text-stone-50 text-sm font-normal leading-[18.97px]"
             >
-              This shows a perfect credit score
+              This shows a high risk profile
             </div>
           </div>
         </div>

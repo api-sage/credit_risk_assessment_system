@@ -30,7 +30,7 @@ export class DashboardComponent {
  
 
   chnageBg(creditRating: string){
-    if (creditRating === "F") {
+    if (creditRating === "F - High Risk") {
       this.isRed=true;
       this.isYellow=false
       this.isGreen=false;
@@ -42,21 +42,21 @@ export class DashboardComponent {
   console.log('isBlue:', this.isBlue);
   console.log('isYellow:', this.isYellow);         
 
-    } else if (creditRating === "C"){
+    } else if (creditRating === "C - Fair Risk"){
       this.isRed=false;
       this.isYellow=false
       this.isGreen=false;
       this.isBlue=true
-    }else if (creditRating === "B"){
+    }else if (creditRating === "B - Moderate Risk"){
       this.isRed=false;
       this.isYellow=true
       this.isGreen=false;
-      this.isBlue=true
-    }else if (creditRating === "A"){
+      this.isBlue=false
+    }else if (creditRating === "A - Low Risk"){
       this.isRed=false;
       this.isYellow=false
       this.isGreen=true;
-      this.isBlue=true
+      this.isBlue=false
     }
   }
   onSubmit(): void {
