@@ -48,8 +48,10 @@
         <button
           type="submit"
           class="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
+          [disabled]="isLoading"
         >
-          Check Score
+        <span *ngIf="isLoading">Loading...</span>
+        <span *ngIf="!isLoading">Check Score</span>
         </button>
         <button
           type="button"
@@ -66,15 +68,15 @@
   <div class="">
     <div class="flex justify-around">
       <div
-        class="p-2.5 bg-slate-50 shadow-md  rounded-2xl flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[26rem] sm:h-48"
+        class="p-2.5 bg-slate-400 border-double border-4 shadow-md  rounded-2xl flex-col justify-start items-start inline-flex sm:mr-3 sm:w-[26rem] sm:h-48"
       >
         <div>
           <img src="../assets/Star.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
-        <div class="text-green-700 text-2xl font-semibold mb-8" id="cardA">
+        <div class="text-stone-50 text-2xl font-semibold mb-8" id="cardA">
           {{ creditScore }}
         </div>
-        <div class="text-green-700 text-2xl font-semibold">Credit Score</div>
+        <div class="text-stone-50 text-2xl font-semibold">Credit Score</div>
       </div>
 
       @if (isRed) {
@@ -86,12 +88,12 @@
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div
-          class="text-black text-2xl font-semibold mb-8"
+          class="text-stone-50 text-2xl font-semibold mb-8"
          
         >
           {{ creditRating }}
         </div>
-        <div class="text-black text-2xl font-semibold">Risk Profile</div>
+        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isBlue) {
         <div
@@ -102,12 +104,12 @@
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div
-          class="text-black text-2xl font-semibold mb-8"
+          class="text-stone-50 text-2xl font-semibold mb-8"
          
         >
           {{ creditRating }}
         </div>
-        <div class="text-black text-2xl font-semibold">Risk Profile</div>
+        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isYellow) {
         <div
@@ -118,12 +120,12 @@
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div
-          class="text-black text-2xl font-semibold mb-8"
+          class="text-stone-50 text-2xl font-semibold mb-8"
          
         >
           {{ creditRating }}
         </div>
-        <div class="text-black text-2xl font-semibold">Risk Profile</div>
+        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else if (isGreen) {
         <div
@@ -134,28 +136,28 @@
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div
-          class="text-black text-2xl font-semibold mb-8"
+          class="text-stone-50 text-2xl font-semibold mb-8"
          
         >
           {{ creditRating }}
         </div>
-        <div class="text-black text-2xl font-semibold">Risk Profile</div>
+        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }@else {
         <div
-        class="p-2.5 shadow-md bg-slate-50 text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
+        class=" bg-slate-400 border-double border-4 p-2.5 shadow-md  text-black rounded-2xl flex-col justify-start items-start inline-flex sm:w-[28rem] sm:h-48 creditRating"
       
         >
         <div>
           <img src="../assets/Exam.png" alt="star" class="h-12 w-12 mb-6" />
         </div>
         <div
-          class="text-black text-2xl font-semibold mb-8"
+          class="text-stone-50 text-2xl font-semibold mb-8"
          
         >
           {{ creditRating }}
         </div>
-        <div class="text-black text-2xl font-semibold">Risk Profile</div>
+        <div class="text-stone-50 text-2xl font-semibold">Risk Profile</div>
       </div>
       }
      
